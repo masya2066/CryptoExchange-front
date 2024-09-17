@@ -1,10 +1,10 @@
 import axios from 'axios';
-import config from '../../../config/config.ts';
+import {config} from "@/appConfig";
 import {axiosInstance} from "@/methods/axiosInstance";
 
 const authMethods = {
     register: (login, name, surname, email) => {
-        return axios.post(config.HOST + '/auth/register', {
+        return axios.post(config.API + '/auth/register', {
             login: login,
             name: name,
             surname: surname,
@@ -12,24 +12,24 @@ const authMethods = {
         });
     },
     registerCodeCheck: (code) => {
-        return axios.post(config.HOST + '/auth/register/check', {
+        return axios.post(config.API + '/auth/register/check', {
             code: code,
         });
     },
     registerSubmit: (code, password) => {
-        return axios.post(config.HOST + '/auth/activate', {
+        return axios.post(config.API + '/auth/activate', {
             code: code,
             password: password,
         });
     },
     recovery: (email) => {
-        return axios.post(config.HOST + '/auth/recovery', {
+        return axios.post(config.API + '/auth/recovery', {
             email: email,
         });
     },
     login: (email, password) => {
         return () =>
-            axios.post(config.HOST + '/auth/login', {
+            axios.post(config.API + '/auth/login', {
                 login: email,
                 password: password,
             });
@@ -38,33 +38,33 @@ const authMethods = {
         return axiosInstance.post('/auth/logout');
     },
     sendMail: (email) => {
-        return axios.post(config.HOST + '/auth/activate/send', {
+        return axios.post(config.API + '/auth/activate/send', {
             email: email,
         });
     },
     userInfo: () => {
         return axiosInstance.get('/user/info');
     },
-    refreshToken: () => {
+    refreshToken: (accessToken, refreshToken) => {
         return axios.post(
-            config.HOST + '/auth/refresh',
+            config.API + '/auth/refresh',
             {
-                token: localStorage.getItem('refresh_token'),
+                token: refreshToken,
             },
             {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                    Authorization: 'Bearer ' + accessToken,
                 },
             }
         );
     },
     recoveryCheckCode: (code) => {
-        return axios.post(config.HOST + '/auth/recovery/check', {
+        return axios.post(config.API + '/auth/recovery/check', {
             code: code,
         });
     },
     recoverySubmit: (code, password) => {
-        return axios.post(config.HOST + '/auth/recovery/submit', {
+        return axios.post(config.API + '/auth/recovery/submit', {
             code: code,
             password: password,
         });

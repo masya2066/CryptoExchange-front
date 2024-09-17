@@ -9,14 +9,16 @@ import Footer2 from './footer/Footer2'
 import Header1 from "./header/Header1"
 import Header2 from './header/Header2'
 import AOS from 'aos';
+import {Provider, useDispatch, useSelector} from "react-redux";
+import store from "@/store";
+import {storage} from "@/storage";
+import authMethods from "@/methods/auth";
 
 export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, children }) {
     const [scroll, setScroll] = useState(0)
     // Moblile Menu
     const [isMobileMenu, setMobileMenu] = useState(false)
     const handleMobileMenu = () => setMobileMenu(!isMobileMenu)
-
-    console.log("Component Layout")
 
     useEffect(() => {
         AOS.init();
@@ -28,7 +30,9 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
         })
     }, [])
     return (
-        <><div id="top" />
+        <>
+            <Provider store={store}>
+            <div id="top" />
             <AddClassBody />
             {!headerStyle && <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} />}
             {headerStyle == 1 ? <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} /> : null}
@@ -45,6 +49,7 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
             {footerStyle == 2 ? < Footer2 /> : null}
 
             <BackToTop target="#top" />
+            </Provider>
         </>
     )
 }

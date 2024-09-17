@@ -4,7 +4,7 @@ import {storage} from "@/storage";
 import authMethods from "@/methods/auth";
 
 export const axiosInstance = axios.create({
-  baseURL: config.HOST,
+  baseURL: config.API,
 });
 
 axiosInstance.interceptors.request.use(

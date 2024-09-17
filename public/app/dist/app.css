@@ -19,16 +19,21 @@
 }
 
 :root {
-    --primary: #3772ff;
-    --bg: #fff;
-    --bg1: #fff;
-    --onsurface: #23262f;
-    --surface: #f7f7f7;
-    --line: #e5e5e5;
-    --text: #777e90;
-    --second: #58bd7d;
-    --dm: "DM Sans", sans-serif --poppins: var(--poppins), sans-serif;
+    --primary: #8e44ad;  /* Muted purple for primary */
+    --bg: #e8f0f2;      /* Soft pastel blue for background */
+    --bg1: #d1e8e2;     /* Light mint green for sections */
+    --onsurface: #333344; /* Darker gray with a hint of blue for text */
+    --surface: #f0f4f8;  /* Light grey-blue for surfaces */
+    --line: #a8b2bf;     /* Soft grayish-blue for borders and lines */
+    --text: #4b4b5b;     /* Muted dark gray for regular text */
+    --second: #f39c12;   /* Warm orange-yellow as a secondary accent */
+    --highlight: #ff7f50; /* Coral for subtle attention-grabbing elements */
+    --dm: "DM Sans", sans-serif; /* Clean and modern font */
+    --poppins: "Poppins", sans-serif; /* Clean font for headers */
 }
+
+
+
 
 .is_dark {
     --bg: #141416;
@@ -1451,7 +1456,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 .coin-list .coin-list__main .flat-tabs .content-tab .content-inner tbody tr {
     border-radius: 12px;
-    background: #fff;
+    background: #f9f9fc;
     height: 90px;
     vertical-align: middle;
     border-bottom: 1px solid var(--line);

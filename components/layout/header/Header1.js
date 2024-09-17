@@ -3,13 +3,18 @@ import dynamic from 'next/dynamic'
 import Link from "next/link"
 import MainMenu from '../Menu'
 import MobileMenu from '../MobileMenu'
+import {Provider, useSelector} from "react-redux";
+import store from "@/store";
 const ThemeSwitch = dynamic(() => import('@/components/elements/ThemeSwitch'), {
     ssr: false,
 })
 export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
+
+    const isAuth = useSelector(state => state.authSlices.isAuth)
+
     return (
         <>
-
+            <Provider store={store}>
             <header id="header_main" className={`header ${scroll ? "is-fixed is-small" : ""}`}>
                 <div className="container-fluid">
                     <div className="row">
@@ -34,54 +39,6 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                     </div>
                                 </div>
                                 <div className="header__right">
-                                    <Menu as="div" className="dropdown">
-                                        <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Assets
-                                        </Menu.Button>
-                                        <Menu.Items as="div" className="dropdown-menu show" aria-labelledby="dropdownMenuButton">
-                                            <Link className="dropdown-item" href="#">Binance Visa Card</Link>
-                                            <Link className="dropdown-item" href="#">Crypto Loans</Link>
-                                            <Link className="dropdown-item" href="#">Binance Pay</Link>
-                                        </Menu.Items>
-                                    </Menu>
-                                    <Menu as="div" className="dropdown">
-                                        <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Orders &amp; Trades
-                                        </Menu.Button>
-                                        <Menu.Items as="div" className="dropdown-menu show" aria-labelledby="dropdownMenuButton1">
-                                            <Link className="dropdown-item" href="#">Binance Convert</Link>
-                                            <Link className="dropdown-item" href="#">Spot</Link>
-                                            <Link className="dropdown-item" href="#">Margin</Link>
-                                            <Link className="dropdown-item" href="#">P2P</Link>
-                                        </Menu.Items>
-                                    </Menu>
-                                    <Menu as="div" className="dropdown">
-                                        <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            EN/USD
-                                        </Menu.Button>
-                                        <Menu.Items as="div" className="dropdown-menu show" aria-labelledby="dropdownMenuButton2">
-                                            <Link href="#" className="dropdown-item notify-item language" data-lang="en">
-                                                <img src="/assets/images/flags/us.jpg" alt="user-image" className="me-1" height={12} />
-                                                <span className="align-middle">English</span>
-                                            </Link>
-                                            <Link href="#" className="dropdown-item notify-item language" data-lang="sp">
-                                                <img src="/assets/images/flags/spain.jpg" alt="user-image" className="me-1" height={12} />
-                                                <span className="align-middle">Spanish</span>
-                                            </Link>
-                                            <Link href="#" className="dropdown-item notify-item language" data-lang="gr">
-                                                <img src="/assets/images/flags/germany.jpg" alt="user-image" className="me-1" height={12} />
-                                                <span className="align-middle">German</span>
-                                            </Link>
-                                            <Link href="#" className="dropdown-item notify-item language" data-lang="it">
-                                                <img src="/assets/images/flags/italy.jpg" alt="user-image" className="me-1" height={12} />
-                                                <span className="align-middle">Italian</span>
-                                            </Link>
-                                            <Link href="#" className="dropdown-item notify-item language" data-lang="ru">
-                                                <img src="/assets/images/flags/russia.jpg" alt="user-image" className="me-1" height={12} />
-                                                <span className="align-middle">Russian</span>
-                                            </Link>
-                                        </Menu.Items>
-                                    </Menu>
                                     <ThemeSwitch />
                                     <Menu as="div" className="dropdown notification">
                                         <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -158,11 +115,20 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                     <div className="d-block d-lg-none">
                                         <div className={`mobile-button d-block ${isMobileMenu ? "active" : ""}`} onClick={handleMobileMenu}><span /></div>{/* /.mobile-button */}
                                     </div>
-                                    <div className="wallet">
+                                    {isAuth ? <div className="wallet">
                                         <Link href="/wallet"> Wallet </Link>
-                                    </div>
+                                    </div> :
+                                        <>
+                                            <div className="wallet">
+                                                <Link href="/login"> Sign In </Link>
+                                            </div>
+                                            <div className="wallet">
+                                                <Link href="/register"> Sign Up </Link>
+                                            </div>
+                                        </>
+                                    }
                                     <Menu as="div" className="dropdown user">
-                                        <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img src="/assets/images/avt/avt-01.jpg" alt="" />
                                         </Menu.Button>
                                         <Menu.Items as="div" className="dropdown-menu show" aria-labelledby="dropdownMenuButton4">
@@ -186,6 +152,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                 </div>
                 <MobileMenu isMobileMenu={isMobileMenu} />
             </header>
+                </Provider>
 
         </>
     )

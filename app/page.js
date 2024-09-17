@@ -8,10 +8,10 @@ import Sale from "@/components/sections/Sale"
 import Testimonials1 from "@/components/sections/Testimonials1"
 import Work1 from "@/components/sections/Work1"
 export default function Home() {
-    console.log("Layout")
+
+
     return (
         <>
-
             <Layout headerStyle={1} footerStyle={2}>
                 <Banner1 />
                 <Crypto1 />

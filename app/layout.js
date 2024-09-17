@@ -1,9 +1,6 @@
 import { DM_Sans, Poppins } from 'next/font/google'
 import "/public/app/dist/app.css"
 import "/public/app/dist/swiper-bundle.min.css"
-import {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {storage} from "@/storage";
 
 const poppins = Poppins({
     weight: ['300', '400', '500', '600', '700'],
@@ -24,18 +21,6 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-
-    const dispatch = useDispatch()
-
-    const getAuth = () => {
-
-    }
-
-    useEffect(() => {
-        if (!localStorage.getItem(storage.accessToken) || !localStorage.getItem(storage.refreshToken)) {
-            dispatch({type: 'authStatus', payload: {isAuth: false}})
-        }
-    }, []);
 
     return (
         <html lang="en">

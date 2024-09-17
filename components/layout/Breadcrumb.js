@@ -1,7 +1,6 @@
 import Link from "next/link"
 
 export default function Breadcrumb({ breadcrumbTitle }) {
-    console.log("Component Breadcrumb")
     return (
         <>
 
