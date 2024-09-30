@@ -5,6 +5,8 @@ import VideoPopup from "@/components/elements/VideoPopup"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import { useState } from "react"
+import store from "@/store";
+import {Provider} from "react-redux";
 export default function Markets() {
     const [flatTabs, setFlatTabs] = useState(1)
     const [flatTabs1, setFlatTabs1] = useState(1)
@@ -24,7 +26,7 @@ export default function Markets() {
     }
     return (
         <>
-
+            <Provider store={store}>
             <Layout headerStyle={1} footerStyle={2}>
                 <div>
                     <section className="banner">
@@ -697,6 +699,7 @@ export default function Markets() {
                 </div>
 
             </Layout>
+            </Provider>
         </>
     )
 }

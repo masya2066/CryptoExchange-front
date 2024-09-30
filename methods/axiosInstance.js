@@ -42,6 +42,7 @@ axiosInstance.interceptors.response.use(
           if (refreshErr.response?.status !== 200) {
             localStorage.removeItem(storage.accessToken);
             localStorage.removeItem(storage.refreshToken);
+            localStorage.removeItem(storage.user);
             throw refreshErr;
           }
         }

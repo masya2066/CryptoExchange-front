@@ -13,12 +13,41 @@ import {Provider, useDispatch, useSelector} from "react-redux";
 import store from "@/store";
 import {storage} from "@/storage";
 import authMethods from "@/methods/auth";
+import Providers from "@/components/layout/Providers";
+import {authStatus} from "@/store/authSlice";
+import {infoUser} from "@/store/userSlice";
 
 export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, children }) {
     const [scroll, setScroll] = useState(0)
     // Moblile Menu
     const [isMobileMenu, setMobileMenu] = useState(false)
     const handleMobileMenu = () => setMobileMenu(!isMobileMenu)
+
+    const dispatch = useDispatch()
+
+    const isAuth = useSelector(state => state.authSlices.isAuth)
+
+    useEffect(() => {
+        if (localStorage.getItem(storage.accessToken) || localStorage.getItem(storage.refreshToken)) {
+            if (!localStorage.getItem(storage.user)) {
+                authMethods.userInfo().then(res => {
+                    if (res?.status === 200 && res?.data) {
+                        dispatch(authStatus({isAuth: true}))
+                        localStorage.setItem(storage.user, JSON.stringify(res.data))
+                        dispatch(infoUser({isUser: JSON.stringify(res.data)}))
+                    }
+                }).catch(e => {
+                    console.error(e)
+                    localStorage.removeItem(storage.accessToken)
+                    localStorage.removeItem(storage.refreshToken)
+                })
+            } else {
+                dispatch(authStatus({isAuth: true}))
+                const user = JSON.parse(localStorage.getItem(storage.user))
+                dispatch(infoUser({isUser: user}))
+            }
+        }
+    }, []);
 
     useEffect(() => {
         AOS.init();
@@ -31,7 +60,8 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
     }, [])
     return (
         <>
-            <Provider store={store}>
+            <Providers>
+                <Provider store={store}>
             <div id="top" />
             <AddClassBody />
             {!headerStyle && <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} />}
@@ -41,15 +71,14 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
 
 
             {breadcrumbTitle && <Breadcrumb breadcrumbTitle={breadcrumbTitle} />}
-
-            {children}
-
+                {children}
             {!footerStyle && < Footer1 />}
             {footerStyle == 1 ? < Footer1 /> : null}
             {footerStyle == 2 ? < Footer2 /> : null}
 
             <BackToTop target="#top" />
-            </Provider>
+                </Provider>
+        </Providers>
         </>
     )
 }

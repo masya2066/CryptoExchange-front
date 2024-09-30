@@ -11,7 +11,7 @@ export default function Footer2() {
                             <div className="col-xl-4 col-md-6">
                                 <div className="info">
                                     <Link href="/" className="logo">
-                                        <img src="/assets/images/logo/log-footer.png" alt="" />
+                                        <img src="/assets/images/logo/log-footer.png" alt="" width={195} height={40}/>
                                     </Link>
                                     <h6>Let's talk! 🤙</h6>
                                     <ul className="list">

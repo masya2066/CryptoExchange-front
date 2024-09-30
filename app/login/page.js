@@ -1,16 +1,16 @@
 'use client'
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState } from "react"
+import LoginModal from "@/app/login/loginModal";
+import {Provider} from "react-redux";
+import store from "@/store";
+import CreateAccountBanner from "@/components/elements/CreateAccountBanner";
 export default function Login() {
-    const [flatTabs, setFlatTabs] = useState(1)
-    const handleFlatTabs = (index) => {
-        setFlatTabs(index)
-    }
+
     return (
         <>
-
-            <Layout headerStyle={1} footerStyle={2} breadcrumbTitle="Login">
+            <Provider store={store}>
+            <Layout headerStyle={1} footerStyle={2} breadcrumbTitle="Sign In">
                 <div>
                     <section className="register login">
                         <div className="container">
@@ -33,62 +33,15 @@ export default function Login() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-12">
-                                    <div className="flat-tabs">
-                                        <div className="content-tab">
-                                            <div className="content-inner" style={{ display: `${flatTabs === 1 ? "block" : "none"}` }}>
-                                                <form>
-                                                    <div className="form-group">
-                                                        <label htmlFor="exampleInputEmail1">Email/ID</label>
-                                                        <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Please fill in the email form." />
-                                                    </div>
-                                                    <div className="form-group s1">
-                                                        <label>Password </label>
-                                                        <input type="password" className="form-control" placeholder="Please enter a password." />
-                                                    </div>
-                                                    <div className="form-group form-check">
-                                                        <div>
-                                                            <input type="checkbox" className="form-check-input" />
-                                                            <label className="form-check-label">Remember Me</label>
-                                                        </div>
-                                                        <p>Forgot Password?</p>
-                                                    </div>
-                                                    <button type="submit" className="btn-action">Login</button>
-                                                    <div className="bottom">
-                                                        <p>Not a member?</p>
-                                                        <Link href="/register">Register</Link>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <LoginModal/>
                             </div>
                         </div>
                     </section>
-                    <section className="section-sale">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-7">
-                                    <div className="block-text">
-                                        <h4 className="heading">Earn up to $25 worth of crypto</h4>
-                                        <p className="desc">
-                                            Discover how specific cryptocurrencies work — and get a bit of
-                                            each crypto to try out for yourself.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-md-5">
-                                    <div className="button">
-                                        <Link href="#">Create Account</Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <CreateAccountBanner/>
                 </div>
 
             </Layout>
+            </Provider>
         </>
     )
 }

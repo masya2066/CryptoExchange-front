@@ -14,25 +14,10 @@ export default function MainMenu() {
     const dispatch = useDispatch()
     const isAuth = useSelector(state => state.authSlices.isAuth)
 
-    const getAuth = () => {
-        const accessToken = localStorage.getItem(storage.accessToken);
-        const refreshToken = localStorage.getItem(storage.refreshToken);
-        authMethods.refreshToken(accessToken, refreshToken).then((res) => {
-            if (res?.status === 200 && res?.data) {
-                dispatch({type: 'authStatus', payload: {isAuth: true}})
-            }
-        }).catch(e => {
-            dispatch({type: 'authStatus', payload: {isAuth: false}})
-            localStorage.removeItem(storage.accessToken);
-            localStorage.removeItem(storage.refreshToken);
-        })
-    }
-
     useEffect(() => {
         if (!localStorage.getItem(storage.accessToken) || !localStorage.getItem(storage.refreshToken)) {
             dispatch({type: 'authStatus', payload: {isAuth: false}})
         } else {
-            getAuth()
         }
     }, [isAuth]);
 
@@ -46,8 +31,10 @@ export default function MainMenu() {
     return (
         <>
             <ul id="menu-primary-menu" className="menu">
-                <li className={`menu-item menu-item-has-children ${checkParentActive(["/home-v2", "/home-v3"])}`}>
-                    <Link href="/">Home </Link>
+                <li href="/" className={`menu-item menu-item-has-children ${checkParentActive(["/home-v2", "/home-v3"])}`}>
+                    <Link
+                        style={{width: '100%'}}
+                        href="/">Home </Link>
                     {/*<ul className="sub-menu">*/}
                     {/*    <li className={`menu-item ${checkCurrentMenuItem("/")}`}>*/}
                     {/*        <Link href="/">Home 01</Link>*/}

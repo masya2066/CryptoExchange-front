@@ -7842,4 +7842,8 @@ body[data-magic-cursor=hide] .mouse-cursor {
     text-transform: capitalize;
 }
 
+.forgot-password-button {
+    cursor: pointer;
+}
+
 /*# sourceMappingURL=app.css.map */

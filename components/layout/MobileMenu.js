@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Providers from "@/components/layout/Providers";
 
 export default function MobileMenu({ isMobileMenu }) {
     const [isActive, setIsActive] = useState(0)
@@ -22,6 +23,7 @@ export default function MobileMenu({ isMobileMenu }) {
     const checkParentActive = (paths) => paths.some(path => currentMenuItem.startsWith(path)) ? "current-menu-item" : ""
     return (
         <>
+            <Providers>
             <nav id="main-nav-mobi" className="main-nav" style={{ display: `${isMobileMenu ? "block" : "none"}` }}>
                 <ul id="menu-primary-menu" className="menu">
                     <li className={`menu-item menu-item-has-children ${checkParentActive(["/home-v2", "/home-v3"])}`}>
@@ -46,7 +48,7 @@ export default function MobileMenu({ isMobileMenu }) {
                     </li>
                 </ul>
             </nav>
-
+            </Providers>
         </>
     )
 }

@@ -1,3 +1,4 @@
+
 import { DM_Sans, Poppins } from 'next/font/google'
 import "/public/app/dist/app.css"
 import "/public/app/dist/swiper-bundle.min.css"
@@ -21,6 +22,7 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
 
     return (
         <html lang="en">

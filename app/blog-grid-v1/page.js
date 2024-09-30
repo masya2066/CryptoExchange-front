@@ -3,6 +3,9 @@ import VideoPopup from "@/components/elements/VideoPopup"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import { useState } from "react"
+import store from "@/store";
+import {Provider} from "react-redux";
+import CreateAccountBanner from "@/components/elements/CreateAccountBanner";
 export default function BlogGrid1() {
     const [flatTabs, setFlatTabs] = useState(1)
     const handleFlatTabs = (index) => {
@@ -13,7 +16,7 @@ export default function BlogGrid1() {
 
     return (
         <>
-
+            <Provider store={store}>
             <Layout headerStyle={1} footerStyle={2} breadcrumbTitle="Blog Grid">
                 <div>
                     <section className="blog-grid">
@@ -929,29 +932,11 @@ export default function BlogGrid1() {
                             </div>
                         </div>
                     </section>
-                    <section className="section-sale">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-7">
-                                    <div className="block-text">
-                                        <h4 className="heading">Earn up to $25 worth of crypto</h4>
-                                        <p className="desc">
-                                            Discover how specific cryptocurrencies work — and get a bit of
-                                            each crypto to try out for yourself.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-md-5">
-                                    <div className="button">
-                                        <Link href="#">Create Account</Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <CreateAccountBanner/>
                 </div>
 
             </Layout>
+            </Provider>
         </>
     )
 }

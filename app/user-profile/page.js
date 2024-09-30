@@ -1,16 +1,25 @@
 'use client'
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState } from "react"
+import {useEffect, useState} from "react"
+import store from "@/store";
+import {Provider, useSelector} from "react-redux";
+import {storage} from "@/storage";
+import UserMainInfo from "@/app/user-profile/userMainInfo";
+import Refferal from "@/app/user-profile/refferal";
+import Information from "@/app/user-profile/information";
+import CreateAccountBanner from "@/components/elements/CreateAccountBanner";
+
 export default function UserProfile() {
     const [flatTabs, setFlatTabs] = useState(1)
     const handleFlatTabs = (index) => {
         setFlatTabs(index)
     }
 
+
     return (
         <>
-
+        <Provider store={store}>
             <Layout headerStyle={1} footerStyle={2} breadcrumbTitle="User Profile">
                 <div>
                     <section className="user-profile flat-tabs">
@@ -19,11 +28,9 @@ export default function UserProfile() {
                                 <div className="col-xl-3 col-md-12">
                                     <div className="user-info center">
                                         <div className="avt">
-                                            <input type="file" className="custom-file-input" id="imgInp" required />
-                                            <img id="blah" src="/assets/images/avt/avt.png" alt="no file" />
+                                            <img id="blah" src="/assets/images/avt/avt.png" alt="avatar" />
                                         </div>
-                                        <h6 className="name">Peterson kennady</h6>
-                                        <p>petersonkenn@demo.com</p>
+                                        <UserMainInfo/>
                                     </div>
                                     <ul className="menu-tab">
                                         <li className={flatTabs === 1 ? "active" : ""} onClick={() => handleFlatTabs(1)}>
@@ -43,33 +50,6 @@ export default function UserProfile() {
                                                 Referrals
                                             </h6>
                                         </li>
-                                        <li className={flatTabs === 3 ? "active" : ""} onClick={() => handleFlatTabs(3)}>
-                                            <h6 className="fs-16">
-                                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M22.7031 12C22.7031 11.0752 22.5852 10.1602 22.3522 9.27366L23.7069 8.27705L21.0776 3.72291L19.5348 4.39884C18.2158 3.08925 16.6007 2.15602 14.815 1.67166L14.6293 0H9.37059L9.18487 1.67166C7.39912 2.15602 5.78404 3.08925 4.46508 4.39884L2.92233 3.72291L0.292969 8.27705L1.64766 9.27366C1.41469 10.1602 1.29684 11.0752 1.29684 12C1.29684 12.9248 1.41473 13.8397 1.64766 14.7263L0.292969 15.7229L2.92233 20.277L4.46508 19.6011C5.78409 20.9108 7.39917 21.844 9.18487 22.3283L9.37059 24H14.6293L14.815 22.3283C16.6008 21.844 18.2159 20.9107 19.5348 19.6011L21.0776 20.277L23.7069 15.7229L22.3522 14.7263C22.5852 13.8397 22.7031 12.9248 22.7031 12ZM14.0184 21.0765L13.5271 21.1853L13.3706 22.5938H10.6293L10.4728 21.1853L9.98146 21.0765C8.1187 20.6643 6.44794 19.6989 5.14987 18.2849L4.81003 17.9147L3.51084 18.4839L2.14017 16.1098L3.28041 15.271L3.12966 14.7916C2.84662 13.8913 2.70309 12.952 2.70309 12C2.70309 11.0479 2.84662 10.1087 3.12966 9.20841L3.28041 8.72897L2.14017 7.89019L3.51084 5.51611L4.81003 6.08531L5.14987 5.71509C6.44794 4.30106 8.1187 3.33572 9.98146 2.92345L10.4728 2.8147L10.6293 1.40625H13.3706L13.5271 2.8147L14.0184 2.92345C15.8812 3.33577 17.552 4.30111 18.85 5.71509L19.1899 6.08531L20.4891 5.51611L21.8597 7.89019L20.7195 8.72897L20.8702 9.20841C21.1533 10.1087 21.2968 11.048 21.2968 12C21.2968 12.952 21.1533 13.8913 20.8702 14.7916L20.7195 15.271L21.8597 16.1098L20.4891 18.4839L19.1899 17.9147L18.85 18.2849C17.552 19.6989 15.8812 20.6643 14.0184 21.0765Z" fill="#3772FF" stroke="#3772FF" strokeWidth="0.5" />
-                                                    <path d="M9.20821 10.3902L8.20354 9.40625L5.63184 12.0321L8.25777 14.6038L9.24168 13.5991L7.62046 12.0114L9.20821 10.3902Z" fill="#3772FF" stroke="#3772FF" strokeWidth="0.5" />
-                                                    <path d="M14.7913 10.3902L16.379 12.0114L14.7578 13.5991L15.7417 14.6038L18.3677 12.0321L15.796 9.40625L14.7913 10.3902Z" fill="#3772FF" stroke="#3772FF" strokeWidth="0.5" />
-                                                    <path d="M10.3169 16.6016L12.3168 7.09721L13.6936 7.3869L11.6937 16.8913L10.3169 16.6016Z" fill="#3772FF" stroke="#3772FF" strokeWidth="0.5" />
-                                                </svg>
-                                                API keys
-                                            </h6>
-                                        </li>
-                                        <li className={flatTabs === 4 ? "active" : ""} onClick={() => handleFlatTabs(4)}>
-                                            <h6 className="fs-16">
-                                                <svg width={24} height={20} viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M4.20008 0H0.600074C0.268726 0 0 0.268726 0 0.600074V4.20008C0 4.53142 0.268726 4.80015 0.600074 4.80015C0.931421 4.80015 1.19993 4.53142 1.19993 4.20008V1.20015H4.20008C4.53142 1.20015 4.79993 0.931422 4.79993 0.600074C4.79993 0.268726 4.53142 0 4.20008 0Z" fill="#3772FF" />
-                                                    <path d="M4.20008 17.9984H1.19993V14.9985C1.19993 14.6672 0.931421 14.3984 0.600074 14.3984C0.268726 14.3984 0 14.6672 0 14.9985V18.5985C0 18.9299 0.268726 19.1986 0.600074 19.1986H4.20008C4.53142 19.1986 4.79993 18.9299 4.79993 18.5985C4.79993 18.2672 4.53142 17.9984 4.20008 17.9984Z" fill="#3772FF" />
-                                                    <path d="M23.3998 0H19.7998C19.4684 0 19.1997 0.268726 19.1997 0.600074C19.1997 0.931422 19.4684 1.20015 19.7998 1.20015H22.7997V4.20008C22.7997 4.53142 23.0684 4.80015 23.3998 4.80015C23.7311 4.80015 23.9998 4.53142 23.9998 4.20008V0.600074C23.9998 0.268726 23.7311 0 23.3998 0Z" fill="#3772FF" />
-                                                    <path d="M23.3998 14.3984C23.0684 14.3984 22.7997 14.6672 22.7997 14.9985V17.9984H19.7998C19.4684 17.9984 19.1997 18.2672 19.1997 18.5985C19.1997 18.9299 19.4684 19.1986 19.7998 19.1986H23.3998C23.7311 19.1986 23.9998 18.9299 23.9998 18.5985V14.9985C23.9998 14.6672 23.7311 14.3984 23.3998 14.3984Z" fill="#3772FF" />
-                                                    <path d="M3.64988 3.60156H4.95012C5.3091 3.60156 5.6 3.87029 5.6 4.20164V15.0016C5.6 15.333 5.3091 15.6017 4.95012 15.6017H3.64988C3.2909 15.6017 3 15.333 3 15.0016V4.20164C3 3.87029 3.2909 3.60156 3.64988 3.60156Z" fill="#3772FF" />
-                                                    <path d="M7.90007 3.60156C7.51347 3.60156 7.2002 3.87029 7.2002 4.20164V15.0016C7.2002 15.333 7.51347 15.6017 7.90007 15.6017C8.28666 15.6017 8.6002 15.333 8.6002 15.0016V4.20164C8.6002 3.87029 8.28666 3.60156 7.90007 3.60156Z" fill="#3772FF" />
-                                                    <path d="M11.1501 3.60156H12.4499C12.8089 3.60156 13.1 3.87029 13.1 4.20164V15.0016C13.1 15.333 12.8089 15.6017 12.4499 15.6017H11.1501C10.7911 15.6017 10.5 15.333 10.5 15.0016V4.20164C10.5 3.87029 10.7911 3.60156 11.1501 3.60156Z" fill="#3772FF" />
-                                                    <path d="M15.4998 3.60156C15.1133 3.60156 14.7998 3.87029 14.7998 4.20164V15.0016C14.7998 15.333 15.1133 15.6017 15.4998 15.6017C15.8863 15.6017 16.1998 15.333 16.1998 15.0016V4.20164C16.1998 3.87029 15.8863 3.60156 15.4998 3.60156Z" fill="#3772FF" />
-                                                    <path d="M18.6501 3.60156H19.9499C20.3089 3.60156 20.6 3.87029 20.6 4.20164V15.0016C20.6 15.333 20.3089 15.6017 19.9499 15.6017H18.6501C18.2911 15.6017 18 15.333 18 15.0016V4.20164C18 3.87029 18.2911 3.60156 18.6501 3.60156Z" fill="#3772FF" />
-                                                </svg>
-                                                2FA
-                                            </h6>
-                                        </li>
                                         <li className={flatTabs === 5 ? "active" : ""} onClick={() => handleFlatTabs(5)}>
                                             <h6 className="fs-16">
                                                 <svg width={20} height={24} viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,35 +66,8 @@ export default function UserProfile() {
                                         <div className="content-inner profile" style={{ display: `${flatTabs === 1 ? "block" : "none"}` }}>
                                             <form >
                                                 <h4>User Profile</h4>
-                                                <h6>Infomation</h6>
-                                                <div className="form-group d-flex s1">
-                                                    <input type="text" className="form-control" defaultValue="John" />
-                                                    <input type="text" className="form-control" defaultValue="Smith" />
-                                                </div>
-                                                <div className="form-group d-flex">
-                                                    <input type="email" className="form-control" id="exampleInputEmail1" defaultValue="Tonynguyen@demo.com" />
-                                                    <div className="sl">
-                                                        <select className="form-control" id="exampleFormControlSelect1">
-                                                            <option>+1</option>
-                                                            <option>+84</option>
-                                                            <option>+82</option>
-                                                            <option>+32</option>
-                                                        </select>
-                                                        <input type="text" className="form-control" placeholder="Your Phone number" />
-                                                    </div>
-                                                </div>
-                                                <div className="form-group d-flex s1">
-                                                    <select className="form-control" id="exampleFormControlSelect2">
-                                                        <option>South Korean</option>
-                                                        <option>Vietnamese</option>
-                                                        <option>South Korean</option>
-                                                        <option>South Korean</option>
-                                                    </select>
-                                                        <select className="form-control" id="exampleFormControlSelect3">
-                                                            <option>Male</option>
-                                                            <option>Female</option>
-                                                        </select>
-                                                </div>
+                                                <h6>Information</h6>
+                                                <Information/>
                                                 <h6 className="two">Features</h6>
                                                 <div className="bt d-flex">
                                                     <div className="left">
@@ -157,98 +110,22 @@ export default function UserProfile() {
                                                 </button>
                                             </form>
                                         </div>
-                                        <div className="content-inner referrals" style={{ display: `${flatTabs === 2 ? "block" : "none"}` }}>
-                                            <h6>Total rewards</h6>
-                                            <h4>$1,056.00 <span>USD</span></h4>
-                                            <p>
-                                                You're earning 20% of the trading fees your referrals pay.
-                                                Learn more
-                                            </p>
-                                            <div className="main">
-                                                <h6>Invite friends to earn 20%</h6>
-                                                <div className="refe">
-                                                    <div>
-                                                        <p>Referral link</p>
-                                                        <input className="form-control" type="text" defaultValue="https://accounts.rockie.com/login" />
-                                                    </div>
-                                                    <div>
-                                                        <p>Referral code</p>
-                                                        <input className="form-control" type="text" defaultValue="N84CRDKK" />
-                                                        <span className="btn-action">Copied</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <Link href="/wallet" className="btn-action">My Wallet</Link>
-                                        </div>
-                                        <div className="content-inner api" style={{ display: `${flatTabs === 3 ? "block" : "none"}` }}>
-                                            <h6>Enable API access on your account to generate keys.</h6>
-                                            <h4>API Access is <span>Disabled</span></h4>
-                                            <p className="mail">
-                                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M20 5H4C3.44772 5 3 5.44772 3 6V18C3 18.5523 3.44772 19 4 19H20C20.5523 19 21 18.5523 21 18V6C21 5.44772 20.5523 5 20 5ZM4 3C2.34315 3 1 4.34315 1 6V18C1 19.6569 2.34315 21 4 21H20C21.6569 21 23 19.6569 23 18V6C23 4.34315 21.6569 3 20 3H4Z" fill="#23262F" />
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.2318 7.35984C5.58537 6.93556 6.21593 6.87824 6.64021 7.2318L11.3598 11.1648C11.7307 11.4739 12.2694 11.4739 12.6402 11.1648L17.3598 7.2318C17.7841 6.87824 18.4147 6.93556 18.7682 7.35984C19.1218 7.78412 19.0645 8.41468 18.6402 8.76825L13.9206 12.7013C12.808 13.6284 11.192 13.6284 10.0795 12.7013L5.35984 8.76825C4.93556 8.41468 4.87824 7.78412 5.2318 7.35984Z" fill="#23262F" />
-                                                </svg>
-                                                petersonkenn@demo.com
-                                            </p>
-                                            <div className="main">
-                                                <h6>Enable API keys</h6>
-                                                <p>Enter your password and 2FA code to Enable the API keys</p>
-                                                <div className="refe">
-                                                    <div className="form-group">
-                                                        <p>Your Password</p>
-                                                        <input className="form-control" type="password" placeholder="Passworld" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <p>2FA Code</p>
-                                                        <input className="form-control" type="text" placeholder="2FA code" />
-                                                    </div>
-                                                </div>
-                                                <Link href="#" className="btn-action">Enable API keys</Link>
-                                            </div>
-                                        </div>
-                                        <div className="content-inner api" style={{ display: `${flatTabs === 4 ? "block" : "none"}` }}>
-                                            <h4>2FA <span className="color-success">Enabled</span></h4>
-                                            <p>
-                                                If you want to turn off 2FA, input your account password and
-                                                the six-digit code provided by the Google Authenticator app
-                                                below, then click <strong>"Disable 2FA"</strong>.
-                                            </p>
-                                            <div className="main">
-                                                <h6>Disable 2FA</h6>
-                                                <p>
-                                                    Enter your password and 2FA code to Disable the 2FA
-                                                    verification
-                                                </p>
-                                                <div className="refe">
-                                                    <div className="form-group">
-                                                        <p>Your Password</p>
-                                                        <input className="form-control" type="password" placeholder="Passworld" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <p>2FA Code</p>
-                                                        <input className="form-control" type="text" placeholder="2FA code" />
-                                                    </div>
-                                                </div>
-                                                <Link href="#" className="btn-action">Disable 2FA verification</Link>
-                                            </div>
+                                        <div className="content-inner referrals" style={{display: `${flatTabs === 2 ? "block" : "none"}`}}>
+                                            <Refferal/>
                                         </div>
                                         <div className="content-inner profile change-pass" style={{ display: `${flatTabs === 5 ? "block" : "none"}` }}>
                                             <h4>Change Password</h4>
-                                            <h6>New Passworld</h6>
+                                            <h6>New Password</h6>
                                             <form >
                                                 <div className="form-group">
                                                     <div>
-                                                        <label>Old Passworld<span>*</span>:</label>
-                                                        <input type="text" className="form-control" value={123456789} />
-                                                    </div>
-                                                    <div>
-                                                        <label>2FA Code<span>*</span>:</label>
-                                                        <input type="text" className="form-control" />
+                                                        <label>Old Password<span>*</span>:</label>
+                                                        <input type="text" className="form-control" placeholder={"Old Password"}/>
                                                     </div>
                                                 </div>
                                                 <div className="form-group">
                                                     <div>
-                                                        <label>New Passworld<span>*</span>:</label>
+                                                        <label>New Password<span>*</span>:</label>
                                                         <input type="password" className="form-control" placeholder="New Passworld" />
                                                     </div>
                                                     <div>
@@ -258,7 +135,7 @@ export default function UserProfile() {
                                                 </div>
                                             </form>
                                             <button type="submit" className="btn-action">
-                                                Change Passworld
+                                                Change Password
                                             </button>
                                         </div>
                                     </div>
@@ -266,29 +143,11 @@ export default function UserProfile() {
                             </div>
                         </div>
                     </section>
-                    <section className="section-sale">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-7">
-                                    <div className="block-text">
-                                        <h4 className="heading">Earn up to $25 worth of crypto</h4>
-                                        <p className="desc">
-                                            Discover how specific cryptocurrencies work — and get a bit of
-                                            each crypto to try out for yourself.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-md-5">
-                                    <div className="button">
-                                        <Link href="#">Create Account</Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <CreateAccountBanner/>
                 </div>
 
             </Layout>
+            </Provider>
         </>
     )
 }

@@ -3,12 +3,12 @@ import {config} from "@/appConfig";
 import {axiosInstance} from "@/methods/axiosInstance";
 
 const authMethods = {
-    register: (login, name, surname, email) => {
+    register: (email, password, login, referralCode) => {
         return axios.post(config.API + '/auth/register', {
-            login: login,
-            name: name,
-            surname: surname,
             email: email,
+            login: login,
+            pass: password,
+            referralCode: referralCode,
         });
     },
     registerCodeCheck: (code) => {
@@ -28,8 +28,7 @@ const authMethods = {
         });
     },
     login: (email, password) => {
-        return () =>
-            axios.post(config.API + '/auth/login', {
+        return axios.post(config.API + '/auth/login', {
                 login: email,
                 password: password,
             });

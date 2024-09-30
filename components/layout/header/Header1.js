@@ -3,14 +3,30 @@ import dynamic from 'next/dynamic'
 import Link from "next/link"
 import MainMenu from '../Menu'
 import MobileMenu from '../MobileMenu'
-import {Provider, useSelector} from "react-redux";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import store from "@/store";
+import {storage} from "@/storage";
+import {useEffect, useState} from "react";
+import authMethods from "@/methods/auth";
+import {authStatus} from "@/store/authSlice";
 const ThemeSwitch = dynamic(() => import('@/components/elements/ThemeSwitch'), {
     ssr: false,
 })
 export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
 
+    const dispatch = useDispatch()
     const isAuth = useSelector(state => state.authSlices.isAuth)
+
+    const logout = () => {
+        authMethods.logout()
+        localStorage.removeItem(storage.accessToken)
+        localStorage.removeItem(storage.accessToken)
+        dispatch(authStatus({isAuth: false}))
+    }
+
+    useEffect(() => {
+
+    }, [isAuth]);
 
     return (
         <>
@@ -23,10 +39,10 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                 <div className="header__left">
                                     <div className="logo">
                                         <Link className="light" href="/">
-                                            <img src="/assets/images/logo/logo.png" alt="" width={118} height={32} data-retina="assets/images/logo/logo@2x.png" data-width={118} data-height={32} />
+                                            <img src="/assets/images/logo/logo.png" alt="" width={120} height={25} data-retina="assets/images/logo/logo@2x.png" data-width={120} data-height={25} />
                                         </Link>
                                         <Link className="dark" href="/">
-                                            <img src="/assets/images/logo/logo-dark.png" alt="" width={118} height={32} data-retina="assets/images/logo/logo-dark@2x.png" data-width={118} data-height={32} />
+                                            <img src="/assets/images/logo/logo-dark.png" alt="" width={120} height={25} data-retina="assets/images/logo/logo-dark@2x.png" data-width={120} data-height={25} />
                                         </Link>
                                     </div>
                                     <div className="left__main">
@@ -132,16 +148,18 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                             <img src="/assets/images/avt/avt-01.jpg" alt="" />
                                         </Menu.Button>
                                         <Menu.Items as="div" className="dropdown-menu show" aria-labelledby="dropdownMenuButton4">
-                                            <Link className="dropdown-item" href="#"><i className="bx bx-user font-size-16 align-middle me-1" />
+                                            <Link className="dropdown-item" href="/user-profile"><i className="bx bx-user font-size-16 align-middle me-1" />
                                                 <span>Profile</span></Link>
-                                            <Link className="dropdown-item" href="#"><i className="bx bx-wallet font-size-16 align-middle me-1" />
+                                            <Link className="dropdown-item" href="/wallet-assets"><i className="bx bx-wallet font-size-16 align-middle me-1" />
                                                 <span>My Wallet</span></Link>
                                             <Link className="dropdown-item d-block" href="#"><span className="badge bg-success float-end">11</span><i className="bx bx-wrench font-size-16 align-middle me-1" />
                                                 <span>Settings</span></Link>
                                             <Link className="dropdown-item" href="#"><i className="bx bx-lock-open font-size-16 align-middle me-1" />
                                                 <span>Lock screen</span></Link>
                                             <div className="dropdown-divider" />
-                                            <Link className="dropdown-item text-danger" href="/user-login"><i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
+                                            <Link
+                                                onClick={() => logout()}
+                                                className="dropdown-item text-danger" href=""><i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
                                                 <span>Logout</span></Link>
                                         </Menu.Items>
                                     </Menu>
