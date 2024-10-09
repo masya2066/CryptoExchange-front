@@ -9,6 +9,7 @@ import {storage} from "@/storage";
 import {useEffect, useState} from "react";
 import authMethods from "@/methods/auth";
 import {authStatus} from "@/store/authSlice";
+import {useNavigate} from "react-router-dom";
 const ThemeSwitch = dynamic(() => import('@/components/elements/ThemeSwitch'), {
     ssr: false,
 })
@@ -22,6 +23,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
         localStorage.removeItem(storage.accessToken)
         localStorage.removeItem(storage.accessToken)
         dispatch(authStatus({isAuth: false}))
+        window.location.href = '/login';
     }
 
     useEffect(() => {
@@ -131,9 +133,14 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                     <div className="d-block d-lg-none">
                                         <div className={`mobile-button d-block ${isMobileMenu ? "active" : ""}`} onClick={handleMobileMenu}><span /></div>{/* /.mobile-button */}
                                     </div>
-                                    {isAuth ? <div className="wallet">
-                                        <Link href="/wallet"> Wallet </Link>
-                                    </div> :
+                                    {isAuth ? <div style={{display: "flex", flexDirection: "row"}}>
+                                            <div className="wallet">
+                                                <Link href="/wallet"> Wallet </Link>
+                                            </div>
+                                            <div className="wallet">
+                                                <Link href="/deposit"> Deposit </Link>
+                                            </div>
+                                        </div> :
                                         <>
                                             <div className="wallet">
                                                 <Link href="/login"> Sign In </Link>
@@ -143,26 +150,26 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                             </div>
                                         </>
                                     }
-                                    <Menu as="div" className="dropdown user">
-                                    <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="/assets/images/avt/avt-01.jpg" alt="" />
-                                        </Menu.Button>
-                                        <Menu.Items as="div" className="dropdown-menu show" aria-labelledby="dropdownMenuButton4">
-                                            <Link className="dropdown-item" href="/user-profile"><i className="bx bx-user font-size-16 align-middle me-1" />
-                                                <span>Profile</span></Link>
-                                            <Link className="dropdown-item" href="/wallet-assets"><i className="bx bx-wallet font-size-16 align-middle me-1" />
-                                                <span>My Wallet</span></Link>
-                                            <Link className="dropdown-item d-block" href="#"><span className="badge bg-success float-end">11</span><i className="bx bx-wrench font-size-16 align-middle me-1" />
-                                                <span>Settings</span></Link>
-                                            <Link className="dropdown-item" href="#"><i className="bx bx-lock-open font-size-16 align-middle me-1" />
-                                                <span>Lock screen</span></Link>
-                                            <div className="dropdown-divider" />
-                                            <Link
-                                                onClick={() => logout()}
-                                                className="dropdown-item text-danger" href=""><i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
-                                                <span>Logout</span></Link>
-                                        </Menu.Items>
-                                    </Menu>
+                                    {isAuth ?
+                                        <Menu as="div" className="dropdown user">
+                                            <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="/assets/images/avt/avt-01.jpg" alt="" />
+                                            </Menu.Button>
+                                            <Menu.Items as="div" className="dropdown-menu show" aria-labelledby="dropdownMenuButton4">
+                                                <Link className="dropdown-item" href="/user-profile"><i className="bx bx-user font-size-16 align-middle me-1" />
+                                                    <span>Profile</span></Link>
+                                                {isAuth ? <Link className="dropdown-item" href="/deposit"><i className="bx bx-wallet font-size-16 align-middle me-1" />
+                                                    <span>Deposit</span></Link> : null}
+                                                <Link className="dropdown-item d-block" href="#"><span className="badge bg-success float-end">11</span><i className="bx bx-wrench font-size-16 align-middle me-1" />
+                                                    <span>Settings</span></Link>
+                                                <div className="dropdown-divider" />
+                                                <Link
+                                                    onClick={() => logout()}
+                                                    className="dropdown-item text-danger" href=""><i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
+                                                    <span>Logout</span></Link>
+                                            </Menu.Items>
+                                        </Menu> : null
+                                    }
                                 </div>
                             </div>
                         </div>

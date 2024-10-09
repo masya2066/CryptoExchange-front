@@ -23,8 +23,18 @@ export default function LoginModal () {
             if (res?.status === 200 && res?.data) {
                 localStorage.setItem(storage.accessToken, res.data.access_token)
                 localStorage.setItem(storage.refreshToken, res.data.refresh_token)
-                setIsLoadingBtn(false)
-                window.location.href = '/user-profile'
+                authMethods.userInfo()
+                    .then(res => {
+                        if (res?.data && res.status == 200) {
+                            localStorage.setItem(storage.user, JSON.stringify(res.data))
+                        }
+                        setIsLoadingBtn(false)
+                        window.location.href = '/user-profile'
+                    }).catch(e => {
+                        setIsLoadingBtn(false)
+                        dispatch(authStatus({isAuth: false}))
+                        console.error(e.response)
+                })
             }
         }).catch(e => {
             setIsLoadingBtn(false)
@@ -35,6 +45,9 @@ export default function LoginModal () {
 
 
     useEffect(() => {
+        if (localStorage.getItem(storage.user) == ""){
+            dispatch(authStatus({isAuth: false}))
+        }
         if (isEmail.length >= 5 && isPassword.length >= 8) {
             setIsDisabledBtn(false);
         } else {

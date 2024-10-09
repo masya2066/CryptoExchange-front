@@ -36,8 +36,7 @@ export default function WalletAssets() {
                                                     <p>Tether USD</p>
                                                 </div>
                                                 <div className="top-right">
-                                                    <Link href="#" className="btn-action">Buy Crypto</Link>
-                                                    <Link href="#" className="btn-action-3">Sell Crypto</Link>
+                                                    <Link href="/deposit" className="btn-action-3">Deposit Crypto</Link>
                                                 </div>
                                             </div>
                                             <div className="wallet-assets-main">

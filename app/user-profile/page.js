@@ -3,12 +3,14 @@ import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import {useEffect, useState} from "react"
 import store from "@/store";
-import {Provider, useSelector} from "react-redux";
-import {storage} from "@/storage";
+import {Provider} from "react-redux";
 import UserMainInfo from "@/app/user-profile/userMainInfo";
 import Refferal from "@/app/user-profile/refferal";
 import Information from "@/app/user-profile/information";
 import CreateAccountBanner from "@/components/elements/CreateAccountBanner";
+import authMethods from "@/methods/auth";
+import {storage} from "@/storage";
+import {authStatus} from "@/store/authSlice";
 
 export default function UserProfile() {
     const [flatTabs, setFlatTabs] = useState(1)
@@ -16,6 +18,20 @@ export default function UserProfile() {
         setFlatTabs(index)
     }
 
+    useEffect(() => {
+        authMethods.userInfo()
+            .then(res => {
+                if (res.status == 200 && res.data) {
+                    localStorage.setItem(storage.user, JSON.stringify(res.data))
+                }
+            })
+            .catch(errorResponse => {
+                if (errorResponse.status == 401) {
+                    localStorage.setItem(storage.user, "")
+                    window.location.href = "/login"
+                }
+            })
+    }, [])
 
     return (
         <>

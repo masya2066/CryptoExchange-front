@@ -711,6 +711,15 @@ body[data-magic-cursor=hide] .mouse-cursor {
     background: var(--primary);
 }
 
+.wallet {
+    .wallet-main {
+        background: var(--surface);
+        padding: 30px 27px 30px 32px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+    }
+}
+
 .header .header__left .main-nav .menu li:hover .sub-menu {
     opacity: 1;
     visibility: visible;
@@ -4497,11 +4506,68 @@ body[data-magic-cursor=hide] .mouse-cursor {
     }
 }
 
-.wallet .wallet-main {
-    background: var(--surface);
-    padding: 30px 27px 30px 32px;
-    border-radius: 20px;
-    border: 1px solid var(--line);
+.wallet {
+    .wallet-deposit-main {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background: var(--surface);
+        padding: 30px 27px 30px 32px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        margin-top: 20px;
+
+        .qr-code-container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-content: center;
+
+            .qr-code {
+                display: flex;
+                background-color: white;
+                width: 300px;
+                height: 300px;
+                justify-content: center;
+                align-content: center;
+
+                img {
+                    width: 100%;
+                    width: 100%;
+                }
+            }
+        }
+
+        .fields-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+            align-content: center;
+
+            .copy-field {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 15px 10px 15px;
+                border-radius: 10px;
+                border: 1px solid var(--line);
+
+                img {
+                    fill: var(--line);
+                    margin: 0 10px 0 10px;
+                    width: 20px;
+                    height: 20px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .wallet .wallet-main .wallet-body {

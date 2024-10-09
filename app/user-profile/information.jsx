@@ -1,7 +1,22 @@
-import {useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
+import authMethods from "@/methods/auth";
+import {storage} from "@/storage";
+import {useDispatch} from "react-redux";
+import {authStatus} from "@/store/authSlice";
 
 export default function Information() {
-    const isUser = useSelector(state => state.userSlices.isUser)
+    const [isUser, setIsUser] = useState({ email: "", phone: "" });
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const userInfo = localStorage.getItem("user_info");
+            if (userInfo) {
+                setIsUser(JSON.parse(userInfo));
+            }
+        }
+    }, []);
 
 
     return (
