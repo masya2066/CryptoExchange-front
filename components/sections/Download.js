@@ -12,7 +12,7 @@ export default function Download() {
                             <div className="download__content" data-aos="fade-up" data-aos-duration={1000}>
                                 <h3 className="heading">Free your money &amp; Invest with confident</h3>
                                 <p className="fs-20 decs">
-                                    With Cryptor Trade, you can be sure your trading skills are
+                                    With Crypto Trade, you can be sure your trading skills are
                                     matched
                                 </p>
                                 <ul className="list">
@@ -22,7 +22,7 @@ export default function Download() {
                                             Go
                                         </h6>
                                         <p className="text">
-                                            Managa your holdings from your mobile decive
+                                            Manage your holdings from your mobile device
                                         </p>
                                     </li>
                                     <li>

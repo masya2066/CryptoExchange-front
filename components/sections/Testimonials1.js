@@ -42,18 +42,18 @@ export default function Testimonials1() {
                                 <div className="swiper swiper-thumb1">
                                     <Swiper {...thumbnailSwiperOptions} onSwiper={setThumbsSwiper} className="swiper-wrapper list-img">
                                         <SwiperSlide>
-                                            <img src="/assets/images/avt/avt-02.png" alt="" />
+                                            <img src="/assets/images/avt/avt-02.jpg" alt="" />
                                         </SwiperSlide>
                                         <SwiperSlide>
-                                            <img src="/assets/images/avt/avt-03.png" alt="" />
+                                            <img src="/assets/images/avt/avt-03.webp" alt="" />
                                         </SwiperSlide>
                                         <SwiperSlide>
-                                            <img src="/assets/images/avt/avt-04.png" alt="" />
+                                            <img src="/assets/images/avt/avt-04.webp" alt="" />
                                         </SwiperSlide>
                                     </Swiper>
                                 </div>
                                 <div className="couter">
-                                    <h6>30+</h6>
+                                    <h6>290+</h6>
                                     <p className="title">Customer Reviews</p>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ export default function Testimonials1() {
                                             </h6>
                                             <div className="bottom">
                                                 <div className="info">
-                                                    <img src="/assets/images/avt/avt-02.png" alt="" />
+                                                    <img src="/assets/images/avt/avt-02.jpg" alt="" />
                                                     <div className="content">
                                                         <h6 className="name">Johnny Andro</h6>
                                                         <p className="position">Director, Company</p>
@@ -93,7 +93,7 @@ export default function Testimonials1() {
                                             </h6>
                                             <div className="bottom">
                                                 <div className="info">
-                                                    <img src="/assets/images/avt/avt-03.png" alt="" />
+                                                    <img src="/assets/images/avt/avt-03.webp" alt="" />
                                                     <div className="content">
                                                         <h6 className="name">Johnny Andro</h6>
                                                         <p className="position">Director, Company</p>
@@ -114,7 +114,7 @@ export default function Testimonials1() {
                                             </h6>
                                             <div className="bottom">
                                                 <div className="info">
-                                                    <img src="/assets/images/avt/avt-04.png" alt="" />
+                                                    <img src="/assets/images/avt/avt-04.webp" alt="" />
                                                     <div className="content">
                                                         <h6 className="name">Johnny Andro</h6>
                                                         <p className="position">Director, Company</p>

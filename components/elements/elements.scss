@@ -1,0 +1,136 @@
+@import '../../public/app/dist/app.css';
+
+
+.loading-button {
+  border-radius: 23px;
+  .MuiButton-root {
+    border-radius: 23px;
+    background-color: var(--primary);
+    display: flex;
+    width: 100%;
+    text-transform: none;
+    font-family: var(--dm);
+    font-weight: 400;
+    font-size: 16px;
+    height: 48.39px;
+    padding: 0 20px 0 20px;
+
+    &::before {
+      border-radius: 23px;
+      content: '';
+      position: absolute;
+      top: 5%;
+      left: 0;
+      width: 0;
+      height: 90%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.05));
+      transition: width 0.7s ease;
+      z-index: 1;
+      transform-origin: left;
+      filter: blur(7px);
+    }
+
+    &::after {
+      border-radius: 23px;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.05));
+      transition: width 0.1s ease;
+      z-index: 1;
+      filter: blur(7px);
+      clip-path: inset(0 0 0 50%);
+    }
+
+    &:hover::before {
+      border-radius: 23px;
+      width: 100%;
+    }
+  }
+}
+
+.base-input {
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: var(--primary) !important;
+  }
+
+  .MuiTextField-root {
+    display: flex;
+    width: 100%;
+  }
+
+  .MuiOutlinedInput-input {
+    padding: 14px 0;
+  }
+
+  .MuiInputBase-root {
+    background-color: var(--bg1);
+    border-radius: 12px;
+    color: var(--onsurface);
+    padding: 0 20px;
+
+    .MuiOutlinedInput-root .Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-color: var(--primary) !important;
+    }
+
+    .MuiOutlinedInput-notchedOutline {
+      border-width: 1px;
+    }
+  }
+
+  p {
+    margin: 0;
+    height: 12px;
+  }
+}
+
+.base-selector {
+  .MuiTextField-root {
+    display: flex;
+    width: 100%;
+  }
+
+  .MuiInputLabel-root {
+    color: gray;
+  }
+
+  .MuiInputBase-input {
+    padding: 16.5px 0;
+    color: var(--onsurface);
+  }
+
+  .MuiSelect-icon {
+    color: var(--onsurface);
+  }
+
+  .MuiOutlinedInput-root {
+    border-radius: 12px;
+    background-color: var(--bg1);
+    padding: 0 20px;
+  }
+
+  .MuiOutlinedInput-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 0;
+  }
+
+  p {
+    margin: 0;
+    height: 12px;
+  }
+
+}
+
+.MuiMenu-paper {
+  background-color: var(--bg1);
+}
+
+.MuiMenuItem-root {
+  color: var(--onsurface);
+  font-size: 18px;
+}

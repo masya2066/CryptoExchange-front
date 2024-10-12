@@ -31,10 +31,9 @@ export default function Banner1() {
                     <div className="row">
                         <div className="col-xl-6 col-md-12">
                             <div className="banner__content">
-                                <h2 className="title">Buy &amp; Sell Digital Assets In The Rockie</h2>
+                                <h2 className="title">Start Your Crypto Journey On FinChain</h2>
                                 <p className="fs-20 desc">
-                                    Coin rockie is the easiest, safest, and fastest way to buy &amp;
-                                    sell crypto asset exchange.
+                                    Finchain offers you the most favorable conditions for cryptocurrency trading.
                                 </p>
                                 <Link href="#" className="btn-action"><span>Get started now</span></Link>
                                 <div className="partner">
@@ -65,7 +64,7 @@ export default function Banner1() {
                         </div>
                         <div className="col-xl-6 col-md-12">
                             <div className="banner__image">
-                                <img src="/assets/images/layout/banner-01.png" alt="" />
+                                <img style={{width: "95%", height: "95%", objectFit: "cover", borderRadius: "20px"}} src="/assets/images/layout/banner-01.webp" alt="" />
                             </div>
                         </div>
                     </div>

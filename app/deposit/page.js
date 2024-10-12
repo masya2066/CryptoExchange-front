@@ -24,25 +24,25 @@ export default function Deposit() {
     useEffect(() => {
         authMethods.userInfo()
             .then(res => {
-                if (res.status == 200 && res.data) {
+                if (res.status === 200 && res.data) {
                     localStorage.setItem(storage.user, JSON.stringify(res.data))
                     cryptoMethods.getBtcBalance(res.data.btc_address)
                         .then(resBtc => {
-                            const balance = resBtc.data.balance === 0 ? "0.00" : resBtc.data.balance
+                            const balance = resBtc.data.balance == 0 ? "0.00" : resBtc.data.balance
                             setIsBtcBalance(balance);
                         }).catch(e => {
                         console.error(e)
                     })
                     cryptoMethods.getEthBalance(res.data.eth_address)
                         .then(resEth => {
-                            const balance = resEth.data.balance === 0 ? "0.00" : resEth.data.balance
+                            const balance = resEth.data.balance == 0 ? "0.00" : resEth.data.balance
                             setIsEthBalance(balance);
                         }).catch(e => {
                         console.error(e)
                     })
                     cryptoMethods.getTrc20Balance(res.data.trx_address)
                         .then(resTrc20 => {
-                            const balance = resTrc20.data.balance === 0 ? "0.00" : resTrc20.data.balance
+                            const balance = resTrc20.data.balance == 0 ? "0.00" : resTrc20.data.balance
                             setIsTrc20Balance(balance);
                         }).catch(e => {
                         console.error(e)
@@ -74,13 +74,13 @@ export default function Deposit() {
                                     <div className="col-xl-3 col-md-12">
                                         <ul className="menu-tab">
                                             <li className={flatTabs === 1 ? "active" : ""}
-                                                onClick={() => handleFlatTabs(1)}><h6 className="fs-16">Ethereum</h6>
+                                                onClick={() => handleFlatTabs(1)}><h6 className="fs-16">BTC</h6>
                                             </li>
                                             <li className={flatTabs === 2 ? "active" : ""}
-                                                onClick={() => handleFlatTabs(2)}><h6 className="fs-16">USDT(TRC20)</h6>
+                                                onClick={() => handleFlatTabs(2)}><h6 className="fs-16">Ethereum</h6>
                                             </li>
                                             <li className={flatTabs === 3 ? "active" : ""}
-                                                onClick={() => handleFlatTabs(3)}><h6 className="fs-16">BTC</h6>
+                                                onClick={() => handleFlatTabs(3)}><h6 className="fs-16">USDT (TRC20)</h6>
                                             </li>
                                         </ul>
                                     </div>
@@ -88,6 +88,36 @@ export default function Deposit() {
                                         <div className="content-tab">
                                             <div className="content-inner"
                                                  style={{display: `${flatTabs === 1 ? "block" : "none"}`}}>
+                                                <div className="wallet-main">
+                                                    <h4 className="heading">Overview</h4>
+                                                    <div className="wallet-body">
+                                                        <div className="left">
+                                                            <p>Total Balance</p>
+                                                            <div className="price">
+                                                                <h6>{isBtcBalance}</h6>
+                                                                <div className="sale success">BTC</div>
+                                                            </div>
+                                                            <p>${isBtcBalance}</p>
+                                                        </div>
+                                                        <div className="right">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="wallet-deposit-main">
+                                                    <div className={"qr-code-container"}>
+                                                        <QRCodeGen
+                                                            usdtAddress={isUser.btc_address}/>
+                                                    </div>
+                                                    <div className={"fields-container"}>
+                                                        <div className={"copy-field"}>
+                                                            Address: {isUser.btc_address}
+                                                            <img src={"/assets/images/icon/copy-icon.png"}/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="content-inner"
+                                                 style={{display: `${flatTabs === 2 ? "block" : "none"}`}}>
                                                 <div className="wallet-main">
                                                     <h4 className="heading">Overview</h4>
                                                     <div className="wallet-body">
@@ -116,7 +146,7 @@ export default function Deposit() {
                                                 </div>
                                             </div>
                                             <div className="content-inner"
-                                                 style={{display: `${flatTabs === 2 ? "block" : "none"}`}}>
+                                                 style={{display: `${flatTabs === 3 ? "block" : "none"}`}}>
                                                 <div className="wallet-main">
                                                     <h4 className="heading">Overview</h4>
                                                     <div className="wallet-body">
@@ -124,7 +154,7 @@ export default function Deposit() {
                                                             <p>Total Balance</p>
                                                             <div className="price">
                                                                 <h6>{isTrc20Balance}</h6>
-                                                                <div className="sale success">USDT(TRC20)</div>
+                                                                <div className="sale success">USDT (TRC20)</div>
                                                             </div>
                                                             <p>${isTrc20Balance}</p>
                                                         </div>
@@ -140,36 +170,6 @@ export default function Deposit() {
                                                     <div className={"fields-container"}>
                                                         <div className={"copy-field"}>
                                                             Address: {isUser.trx_address}
-                                                            <img src={"/assets/images/icon/copy-icon.png"}/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="content-inner"
-                                                 style={{display: `${flatTabs === 3 ? "block" : "none"}`}}>
-                                                <div className="wallet-main">
-                                                    <h4 className="heading">Overview</h4>
-                                                    <div className="wallet-body">
-                                                        <div className="left">
-                                                            <p>Total Balance</p>
-                                                            <div className="price">
-                                                                <h6>{isBtcBalance}</h6>
-                                                                <div className="sale success">BTC</div>
-                                                            </div>
-                                                            <p>${isBtcBalance}</p>
-                                                        </div>
-                                                        <div className="right">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="wallet-deposit-main">
-                                                    <div className={"qr-code-container"}>
-                                                        <QRCodeGen
-                                                            usdtAddress={isUser.btc_address}/>
-                                                    </div>
-                                                    <div className={"fields-container"}>
-                                                        <div className={"copy-field"}>
-                                                            Address: {isUser.btc_address}
                                                             <img src={"/assets/images/icon/copy-icon.png"}/>
                                                         </div>
                                                     </div>

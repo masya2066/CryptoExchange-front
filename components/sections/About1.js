@@ -47,37 +47,21 @@ export default function About1() {
                         </div>
                         <div className="col-xl-6 col-md-12">
                             <div className="about__content" data-aos="fade-up" data-aos-duration={1000}>
-                                <h3 className="heading">What Is Rockie</h3>
+                                <h3 className="heading">What Is FinChain</h3>
                                 <p className="fs-20 decs">
-                                    Experience a variety of trading on Bitcost. You can use various
-                                    types of coin transactions such as Spot Trade, Futures Trade,
-                                    P2P, Staking, Mining, and margin.
+                                    Experience diverse trading options on FinChain,
+                                    including Spot, Futures, P2P, Staking, Mining, and Margin.
                                 </p>
                                 <ul className="list">
                                     <li>
                                         <h6 className="title">
-                                            <span className="icon-check" />View real-time
-                                            cryptocurrency prices
+                                            <span className="icon-check" />
+                                            Buy and sell popular cryptocurrencies
+                                            like BTC, ETH, SOLI, and more, while viewing real-time prices on our platform.
                                         </h6>
-                                        <p className="text">
-                                            Experience a variety of trading on Bitcost. You can use
-                                            various types of coin transactions such as Spot Trade,
-                                            Futures Trade, P2P, Staking, Mining, and margin.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h6 className="title">
-                                            <span className="icon-check" />Buy and sell BTC, ETH, XRP,
-                                            OKB, Etc...
-                                        </h6>
-                                        <p className="text">
-                                            Experience a variety of trading on Bitcost. You can use
-                                            various types of coin transactions such as Spot Trade,
-                                            Futures Trade, P2P, Staking, Mining, and margin.
-                                        </p>
                                     </li>
                                 </ul>
-                                <Link href="#" className="btn-action">Explore More</Link>
+                                <Link href="#" className="btn-action">Start Now</Link>
                             </div>
                         </div>
                     </div>

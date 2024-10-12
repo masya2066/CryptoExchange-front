@@ -10,10 +10,9 @@ export default function Work1() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="block-text center">
-                                <h3 className="heading">How It Work</h3>
+                                <h3 className="heading">How It Works</h3>
                                 <p className="fs-20 desc">
-                                    Stacks is a production-ready library of stackable content blocks
-                                    built in React Native.
+                                    A quick and easy guide to using our platform.
                                 </p>
                             </div>
                             <div className="work__main">
@@ -25,8 +24,7 @@ export default function Work1() {
                                         <p className="step">Step 1</p>
                                         <Link href="#" className="title">Download</Link>
                                         <p className="text">
-                                            Stacks is a production-ready library of stackable content
-                                            blocks built in React Native.
+                                            Go to the official website or download FinChain from your app store.
                                         </p>
                                     </div>
                                     <img className="line" src="/assets/images/icon/connect-line.png" alt="" />
@@ -37,10 +35,10 @@ export default function Work1() {
                                     </div>
                                     <div className="content">
                                         <p className="step">Step 2</p>
-                                        <Link href="#" className="title">Connect wallet</Link>
+                                        <Link href="#" className="title">Sign Up and Create Wallet
+                                        </Link>
                                         <p className="text">
-                                            Stacks is a production-ready library of stackable content
-                                            blocks built in React Native.
+                                            Register your account and set up your secure cryptocurrency wallet.
                                         </p>
                                     </div>
                                     <img className="line" src="/assets/images/icon/connect-line.png" alt="" />
@@ -53,8 +51,7 @@ export default function Work1() {
                                         <p className="step">Step 3</p>
                                         <Link href="#" className="title">Start trading</Link>
                                         <p className="text">
-                                            Stacks is a production-ready library of stackable content
-                                            blocks built in React Native.
+                                            Deposit funds and begin trading cryptocurrencies on our platform.
                                         </p>
                                     </div>
                                     <img className="line" src="/assets/images/icon/connect-line.png" alt="" />
@@ -67,8 +64,7 @@ export default function Work1() {
                                         <p className="step">Step 4</p>
                                         <Link href="#" className="title">Earn money</Link>
                                         <p className="text">
-                                            Stacks is a production-ready library of stackable content
-                                            blocks built in React Native.
+                                            Watch your investments grow and profit from successful trades.
                                         </p>
                                     </div>
                                 </div>

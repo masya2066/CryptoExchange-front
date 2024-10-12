@@ -1,13 +1,14 @@
 'use client'
 import ChatList from "@/components/chart/ChatList"
 import Link from "next/link"
-import { useState } from "react"
+import { useState} from "react"
 import IconStar from "../elements/IconStar"
 export default function Coinlist2() {
     const [flatTabs, setFlatTabs] = useState(1)
     const handleFlatTabs = (index) => {
         setFlatTabs(index)
     }
+
 
     return (
         <>

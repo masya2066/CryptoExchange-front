@@ -714,9 +714,31 @@ body[data-magic-cursor=hide] .mouse-cursor {
 .wallet {
     .wallet-main {
         background: var(--surface);
-        padding: 30px 27px 30px 32px;
+        padding: 30px 27px 30px 62px;
         border-radius: 20px;
         border: 1px solid var(--line);
+    }
+
+    .wallet-withdraw {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 25px;
+        background: var(--surface);
+        padding: 30px 100px 30px 100px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+
+        .inputs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 15%;
+        }
+
+        .button-container {
+            padding: 0 15%;
+        }
     }
 }
 

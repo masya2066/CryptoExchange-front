@@ -4,14 +4,87 @@ import Link from "next/link"
 import {useEffect, useState} from "react"
 import ChatList from "../chart/ChatList"
 import IconStar from "../elements/IconStar"
+import cryptoMethods from "@/methods/crypto";
 export default function Coinlist1() {
     const [flatTabs, setFlatTabs] = useState(1)
+    const [isBtc, setIsBtc] = useState({
+        "usd_price": 0,
+        "market_cap": 0,
+        "change_24h": 0
+    })
+    const [isEth, setIsEth] = useState({
+        "usd_price": 0,
+        "market_cap": 0,
+        "change_24h": 0
+    })
+    const [isUsdt, setIsUsdt] = useState({
+        "usd_price": 0,
+        "market_cap": 0,
+        "change_24h": 0
+    })
+    const [isRipple, setIsRipple] = useState({
+        "usd_price": 0,
+        "market_cap": 0,
+        "change_24h": 0
+    })
+    const [isSolana, setIsSolana] = useState({
+        "usd_price": 0,
+        "market_cap": 0,
+        "change_24h": 0
+    })
+    const [isBnb, setIsBnb] = useState({
+        "usd_price": 0,
+        "market_cap": 0,
+        "change_24h": 0
+    })
+    const [isAvalanche, setIsAvalanche] = useState({
+        "usd_price": 0,
+        "market_cap": 0,
+        "change_24h": 0
+    })
+    const [isCardano, setIsCardano] = useState({
+        "usd_price": 0,
+        "market_cap": 0,
+        "change_24h": 0
+    })
     const handleFlatTabs = (index) => {
         setFlatTabs(index)
     }
 
     useEffect(() => {
-
+        cryptoMethods.getBtcInfo()
+            .then(resBtc => {
+                if (resBtc.data && resBtc.status === 200) {
+                    const formattedData = {
+                        usd_price: resBtc.data.usd_price.toLocaleString(),
+                        market_cap: resBtc.data.market_cap ? resBtc.data.market_cap.toLocaleString() : "N/A", // Check if market_cap exists
+                        change_24h: resBtc.data.change_24h !== undefined ? resBtc.data.change_24h.toFixed(2) : "N/A" // Check if change_24h exists
+                    };
+                    setIsBtc(formattedData)
+                }
+            })
+        cryptoMethods.getEthInfo()
+            .then(resEth => {
+                if (resEth.data && resEth.status === 200) {
+                    const formattedData = {
+                        usd_price: resEth.data.usd_price.toLocaleString(),
+                        market_cap: resEth.data.market_cap ? resEth.data.market_cap.toLocaleString() : "N/A", // Check if market_cap exists
+                        change_24h: resEth.data.change_24h !== undefined ? resEth.data.change_24h.toFixed(2) : "N/A" // Check if change_24h exists
+                    };
+                    setIsEth(formattedData)
+                }
+            })
+        cryptoMethods.getUsdtInfo()
+            .then(resUsdt => {
+                if (resUsdt.data && resUsdt.status === 200) {
+                    const formattedData = {
+                        usd_price: resUsdt.data.usd_price.toLocaleString(),
+                        market_cap: resUsdt.data.market_cap ? resUsdt.data.market_cap.toLocaleString() : "N/A", // Check if market_cap exists
+                        change_24h: resUsdt.data.change_24h !== undefined ? resUsdt.data.change_24h.toFixed(2) : "N/A" // Check if change_24h exists
+                    };
+                    setIsUsdt(formattedData)
+                }
+            })
     }, []);
 
     return (
@@ -55,32 +128,38 @@ export default function Coinlist1() {
                                                                 <span>Bitcoin</span>
                                                                 <span className="unit">BTC</span></Link>
                                                         </td>
-                                                        <td className="boild">$56,623.54</td>
-                                                        <td className="up">+1.45%</td>
-                                                        <td className="boild">$880,423,640,582</td>
+                                                        <td className="boild">${isBtc.usd_price}</td>
+                                                        <td className="up">{isBtc.change_24h > 0 ? "+"+isBtc.change_24h : "-" + isBtc.change_24h}%</td>
+                                                        <td className="boild">${isBtc.market_cap}</td>
                                                         <td>
-                                                            <ChatList color={1} />
+                                                            <ChatList color={isBtc.change_24h > 0 ? 1 : 2} />
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row"><IconStar /></th>
+                                                        <th scope="row"><IconStar/></th>
                                                         <td>2</td>
                                                         <td>
-                                                            <Link href="#"><span className="icon-eth"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /></span><span>Ethereum</span>
+                                                            <Link href="#"><span className="icon-eth"><span
+                                                                className="path1"/><span className="path2"/><span
+                                                                className="path3"/><span
+                                                                className="path4"/></span><span>Ethereum</span>
                                                                 <span className="unit">ETH</span></Link>
                                                         </td>
-                                                        <td className="boild">$56,623.54</td>
-                                                        <td className="down">-5.12%</td>
-                                                        <td className="boild">$880,423,640,582</td>
+                                                        <td className="boild">${isEth.usd_price}</td>
+                                                        <td className="up">{isEth.change_24h > 0 ? "+" + isEth.change_24h : "-" + isBtc.change_24h}%</td>
+                                                        <td className="boild">${isEth.market_cap}</td>
                                                         <td>
-                                                            <ChatList color={2} />
+                                                            <ChatList color={isEth.change_24h > 0 ? 1 : 2}/>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row"><IconStar /></th>
+                                                        <th scope="row"><IconStar/></th>
                                                         <td>3</td>
                                                         <td>
-                                                            <Link href="#"><span className="icon-bnb"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /><span className="path5" /><span className="path6" /></span><span>BNB</span>
+                                                            <Link href="#"><span className="icon-bnb"><span
+                                                                className="path1"/><span className="path2"/><span
+                                                                className="path3"/><span className="path4"/><span
+                                                                className="path5"/><span className="path6"/></span><span>BNB</span>
                                                                 <span className="unit">BNB/USD</span></Link>
                                                         </td>
                                                         <td className="boild">$56,623.54</td>

@@ -13,7 +13,7 @@ export default function CreateAccountBanner() {
                         <div className="row">
                             <div className="col-md-7">
                                 <div className="block-text">
-                                    <h4 className="heading">Earn up to $25 worth of crypto</h4>
+                                    <h4 className="heading">Earn up to $300 worth of crypto</h4>
                                     <p className="desc">
                                         Discover how specific cryptocurrencies work — and get a bit of
                                         each crypto to try out for yourself.
@@ -22,7 +22,7 @@ export default function CreateAccountBanner() {
                             </div>
                             <div className="col-md-5">
                                 <div className="button">
-                                    <Link href="#">Create Account</Link>
+                                    <Link href="/register">Create Account</Link>
                                 </div>
                             </div>
                         </div>
