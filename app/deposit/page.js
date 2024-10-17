@@ -20,6 +20,14 @@ export default function Deposit() {
     const [isEthBalance, setIsEthBalance] = useState("0.00")
     const [isTrc20Balance, setIsTrc20Balance] = useState("0.00")
 
+    const handleCopy = (text) => {
+        navigator.clipboard.writeText(text).then(() => {
+
+        }).catch(err => {
+            alert("Ошибка при копировании: " + err);
+        });
+    };
+
 
     useEffect(() => {
         authMethods.userInfo()
@@ -111,7 +119,9 @@ export default function Deposit() {
                                                     <div className={"fields-container"}>
                                                         <div className={"copy-field"}>
                                                             Address: {isUser.btc_address}
-                                                            <img src={"/assets/images/icon/copy-icon.png"}/>
+                                                            <img src={"/assets/images/icon/copy-icon.png"}
+                                                            onClick={() => handleCopy(isUser.btc_address)}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -140,7 +150,9 @@ export default function Deposit() {
                                                     <div className={"fields-container"}>
                                                         <div className={"copy-field"}>
                                                             Address: {isUser.eth_address}
-                                                            <img src={"/assets/images/icon/copy-icon.png"}/>
+                                                            <img src={"/assets/images/icon/copy-icon.png"}
+                                                                 onClick={() => handleCopy(isUser.eth_address)}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,7 +182,9 @@ export default function Deposit() {
                                                     <div className={"fields-container"}>
                                                         <div className={"copy-field"}>
                                                             Address: {isUser.trx_address}
-                                                            <img src={"/assets/images/icon/copy-icon.png"}/>
+                                                            <img src={"/assets/images/icon/copy-icon.png"}
+                                                                 onClick={() => handleCopy(isUser.trx_address)}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>

@@ -5,84 +5,36 @@ import {useEffect, useState} from "react"
 import ChatList from "../chart/ChatList"
 import IconStar from "../elements/IconStar"
 import cryptoMethods from "@/methods/crypto";
+import {defaultCurrecy} from "@/components/models/cryptoModels";
+
 export default function Coinlist1() {
     const [flatTabs, setFlatTabs] = useState(1)
-    const [isBtc, setIsBtc] = useState({
-        "usd_price": 0,
-        "market_cap": 0,
-        "change_24h": 0
-    })
-    const [isEth, setIsEth] = useState({
-        "usd_price": 0,
-        "market_cap": 0,
-        "change_24h": 0
-    })
-    const [isUsdt, setIsUsdt] = useState({
-        "usd_price": 0,
-        "market_cap": 0,
-        "change_24h": 0
-    })
-    const [isRipple, setIsRipple] = useState({
-        "usd_price": 0,
-        "market_cap": 0,
-        "change_24h": 0
-    })
-    const [isSolana, setIsSolana] = useState({
-        "usd_price": 0,
-        "market_cap": 0,
-        "change_24h": 0
-    })
-    const [isBnb, setIsBnb] = useState({
-        "usd_price": 0,
-        "market_cap": 0,
-        "change_24h": 0
-    })
-    const [isAvalanche, setIsAvalanche] = useState({
-        "usd_price": 0,
-        "market_cap": 0,
-        "change_24h": 0
-    })
-    const [isCardano, setIsCardano] = useState({
-        "usd_price": 0,
-        "market_cap": 0,
-        "change_24h": 0
-    })
+    const [isBtc, setIsBtc] = useState(defaultCurrecy)
+    const [isEth, setIsEth] = useState(defaultCurrecy)
+    const [isUsdt, setIsUsdt] = useState(defaultCurrecy)
+    const [isRipple, setIsRipple] = useState(defaultCurrecy)
+    const [isSolana, setIsSolana] = useState(defaultCurrecy)
+    const [isBnb, setIsBnb] = useState(defaultCurrecy)
+    const [isAvalanche, setIsAvalanche] = useState(defaultCurrecy)
+    const [isCardano, setIsCardano] = useState(defaultCurrecy)
     const handleFlatTabs = (index) => {
         setFlatTabs(index)
     }
 
     useEffect(() => {
-        cryptoMethods.getBtcInfo()
-            .then(resBtc => {
-                if (resBtc.data && resBtc.status === 200) {
-                    const formattedData = {
-                        usd_price: resBtc.data.usd_price.toLocaleString(),
-                        market_cap: resBtc.data.market_cap ? resBtc.data.market_cap.toLocaleString() : "N/A", // Check if market_cap exists
-                        change_24h: resBtc.data.change_24h !== undefined ? resBtc.data.change_24h.toFixed(2) : "N/A" // Check if change_24h exists
-                    };
-                    setIsBtc(formattedData)
-                }
-            })
-        cryptoMethods.getEthInfo()
-            .then(resEth => {
-                if (resEth.data && resEth.status === 200) {
-                    const formattedData = {
-                        usd_price: resEth.data.usd_price.toLocaleString(),
-                        market_cap: resEth.data.market_cap ? resEth.data.market_cap.toLocaleString() : "N/A", // Check if market_cap exists
-                        change_24h: resEth.data.change_24h !== undefined ? resEth.data.change_24h.toFixed(2) : "N/A" // Check if change_24h exists
-                    };
-                    setIsEth(formattedData)
-                }
-            })
-        cryptoMethods.getUsdtInfo()
-            .then(resUsdt => {
-                if (resUsdt.data && resUsdt.status === 200) {
-                    const formattedData = {
-                        usd_price: resUsdt.data.usd_price.toLocaleString(),
-                        market_cap: resUsdt.data.market_cap ? resUsdt.data.market_cap.toLocaleString() : "N/A", // Check if market_cap exists
-                        change_24h: resUsdt.data.change_24h !== undefined ? resUsdt.data.change_24h.toFixed(2) : "N/A" // Check if change_24h exists
-                    };
-                    setIsUsdt(formattedData)
+        cryptoMethods.getCurrenciesInfo()
+            .then(res => {
+                if (res.data) {
+                    res.data.forEach(currency => {
+                        if (currency.id === "bitcoin") setIsBtc(currency)
+                        if (currency.id === "ethereum") setIsEth(currency)
+                        if (currency.id === "tether") setIsUsdt(currency)
+                        if (currency.id === "solana") setIsSolana(currency)
+                        if (currency.id === "binancecoin") setIsBnb(currency)
+                        if (currency.id === "ripple") setIsRipple(currency)
+                        if (currency.id === "cardano") setIsCardano(currency)
+                        if (currency.id === "avalanche-2") setIsAvalanche(currency)
+                    })
                 }
             })
     }, []);
@@ -128,11 +80,13 @@ export default function Coinlist1() {
                                                                 <span>Bitcoin</span>
                                                                 <span className="unit">BTC</span></Link>
                                                         </td>
-                                                        <td className="boild">${isBtc.usd_price}</td>
-                                                        <td className="up">{isBtc.change_24h > 0 ? "+"+isBtc.change_24h : "-" + isBtc.change_24h}%</td>
-                                                        <td className="boild">${isBtc.market_cap}</td>
+                                                        <td className="boild">${isBtc.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                        <td className={isBtc.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                            {isBtc.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                        </td>
+                                                        <td className="boild">${isBtc.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={isBtc.change_24h > 0 ? 1 : 2} />
+                                                            <ChatList color={isBtc.market_data.price_change_percentage_7d > 0 ? 1 : 2} />
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -145,11 +99,14 @@ export default function Coinlist1() {
                                                                 className="path4"/></span><span>Ethereum</span>
                                                                 <span className="unit">ETH</span></Link>
                                                         </td>
-                                                        <td className="boild">${isEth.usd_price}</td>
-                                                        <td className="up">{isEth.change_24h > 0 ? "+" + isEth.change_24h : "-" + isBtc.change_24h}%</td>
-                                                        <td className="boild">${isEth.market_cap}</td>
+                                                        <td className="boild">${isEth.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                        <td className={isEth.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                            {isEth.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                        </td>
+                                                        <td className="boild">${isEth.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={isEth.change_24h > 0 ? 1 : 2}/>
+                                                            <ChatList
+                                                                color={isEth.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -162,11 +119,14 @@ export default function Coinlist1() {
                                                                 className="path5"/><span className="path6"/></span><span>BNB</span>
                                                                 <span className="unit">BNB/USD</span></Link>
                                                         </td>
-                                                        <td className="boild">$56,623.54</td>
-                                                        <td className="down">-3.75%</td>
-                                                        <td className="boild">$880,423,640,582</td>
+                                                        <td className="boild">${isBnb.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                        <td className={isBnb.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                            {isBnb.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                        </td>
+                                                        <td className="boild">${isBnb.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={2} />
+                                                            <ChatList
+                                                                color={isBnb.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -176,11 +136,14 @@ export default function Coinlist1() {
                                                             <Link href="#"><span className="icon-tether"><span className="path1" /><span className="path2" /></span><span>Tether</span>
                                                                 <span className="unit">USDT/USD</span></Link>
                                                         </td>
-                                                        <td className="boild">$56,623.54</td>
-                                                        <td className="up">+1.45%</td>
-                                                        <td className="boild">$880,423,640,582</td>
+                                                        <td className="boild">${isUsdt.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                        <td className={isUsdt.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                            {isUsdt.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                        </td>
+                                                        <td className="boild">${isUsdt.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={1} />
+                                                            <ChatList
+                                                                color={isUsdt.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -190,38 +153,55 @@ export default function Coinlist1() {
                                                             <Link href="#"><span className="icon-sol"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /><span className="path5" /></span><span>Solana</span>
                                                                 <span className="unit">SOL</span></Link>
                                                         </td>
-                                                        <td className="boild">$56,623.54</td>
-                                                        <td className="up">+1.45%</td>
-                                                        <td className="boild">$880,423,640,582</td>
+                                                        <td className="boild">${isSolana.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                        <td className={isSolana.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                            {isSolana.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                        </td>
+                                                        <td className="boild">${isSolana.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={1} />
+                                                            <ChatList
+                                                                color={isSolana.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row"><IconStar /></th>
+                                                        <th scope="row"><IconStar/></th>
                                                         <td>6</td>
                                                         <td>
-                                                            <Link href="#"><span className="icon-btc"><span className="path1" /><span className="path2" /></span><span>XRP</span> <span className="unit">XRP</span></Link>
+                                                            <Link href="#"><span className="icon-btc"><span
+                                                                className="path1"/><span
+                                                                className="path2"/></span><span>XRP</span> <span
+                                                                className="unit">XRP</span></Link>
                                                         </td>
-                                                        <td className="boild">$56,623.54</td>
-                                                        <td className="down">-2.22%</td>
-                                                        <td className="boild">$880,423,640,582</td>
+                                                        <td className="boild">${isRipple.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                        <td className={isRipple.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                            {isRipple.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                        </td>
+                                                        <td className="boild">${isRipple.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={2} />
+                                                            <ChatList
+                                                                color={isRipple.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row"><IconStar /></th>
+                                                        <th scope="row"><IconStar/></th>
                                                         <td>7</td>
                                                         <td>
-                                                            <Link href="#"><span className="icon-ada"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /><span className="path5" /><span className="path6" /><span className="path7" /><span className="path8" /><span className="path9" /></span><span>Cardano</span>
+                                                            <Link href="#"><span className="icon-ada"><span
+                                                                className="path1"/><span className="path2"/><span
+                                                                className="path3"/><span className="path4"/><span
+                                                                className="path5"/><span className="path6"/><span
+                                                                className="path7"/><span className="path8"/><span
+                                                                className="path9"/></span><span>Cardano</span>
                                                                 <span className="unit">ADA</span></Link>
                                                         </td>
-                                                        <td className="boild">$56,623.54</td>
-                                                        <td className="up">+0.8%</td>
-                                                        <td className="boild">$880,423,640,582</td>
+                                                        <td className="boild">${isCardano.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                        <td className={isCardano.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                            {isCardano.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                        </td>
+                                                        <td className="boild">${isCardano.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={1} />
+                                                            <ChatList
+                                                                color={isCardano.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -231,11 +211,14 @@ export default function Coinlist1() {
                                                             <Link href="#"><span className="icon-avax"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /></span><span>Avalanche</span>
                                                                 <span className="unit">AVAX</span></Link>
                                                         </td>
-                                                        <td className="boild">$56,623.54</td>
-                                                        <td className="up">+1.41%</td>
-                                                        <td className="boild">$880,423,640,582</td>
+                                                        <td className="boild">${isAvalanche.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                        <td className={isAvalanche.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                            {isAvalanche.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                        </td>
+                                                        <td className="boild">${isAvalanche.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={1} />
+                                                            <ChatList
+                                                                color={isAvalanche.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
                                                         </td>
                                                     </tr>
                                                 </tbody>

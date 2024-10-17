@@ -1,14 +1,26 @@
 'use client'
 import Layout from "@/components/layout/Layout"
-import { useState } from "react"
+import {useEffect, useState} from "react"
 import store from "@/store";
 import {Provider} from "react-redux";
 import CreateAccountBanner from "@/components/elements/CreateAccountBanner";
 import BaseInput from "@/components/elements/BaseInput";
 import LoadButton from "@/components/elements/LoadingButton";
 import BaseSelector from "@/components/elements/Selector";
+import authMethods from "@/methods/auth";
+import {storage} from "@/storage";
+import cryptoMethods from "@/methods/crypto";
+import {defaultCurrecy} from "@/components/models/cryptoModels";
 export default function Wallet() {
     const [flatTabs, setFlatTabs] = useState(1)
+    const [isUser, setIsUser] = useState({});
+    const [isBtcBalance, setIsBtcBalance] = useState("0.00")
+    const [isEthBalance, setIsEthBalance] = useState("0.00")
+    const [isTrc20Balance, setIsTrc20Balance] = useState("0.00")
+
+    const [isBtcInfo, setIsBtcInfo] = useState(defaultCurrecy)
+    const [isEthInfo, setIsEthInfo] = useState(defaultCurrecy)
+    const [isTrc20Info, setIsTrc20Info] = useState(defaultCurrecy)
     const handleFlatTabs = (index) => {
         setFlatTabs(index)
     }
@@ -31,6 +43,65 @@ export default function Wallet() {
         },
     ];
 
+    useEffect(() => {
+        authMethods.userInfo()
+            .then(res => {
+                if (res.status === 200 && res.data) {
+                    localStorage.setItem(storage.user, JSON.stringify(res.data))
+                    cryptoMethods.getBtcBalance(res.data.btc_address)
+                        .then(resBtc => {
+                            const balance = resBtc.data.balance == 0 ? "0.00" : resBtc.data.balance
+                            setIsBtcBalance(balance);
+                        }).catch(e => {
+                        console.error(e)
+                    })
+                    cryptoMethods.getEthBalance(res.data.eth_address)
+                        .then(resEth => {
+                            const balance = resEth.data.balance == 0 ? "0.00" : resEth.data.balance
+                            setIsEthBalance(balance);
+                        }).catch(e => {
+                        console.error(e)
+                    })
+                    cryptoMethods.getTrc20Balance(res.data.trx_address)
+                        .then(resTrc20 => {
+                            const balance = resTrc20.data.balance == 0 ? "0.00" : resTrc20.data.balance
+                            setIsTrc20Balance(balance);
+                        }).catch(e => {
+                        console.error(e)
+                    })
+                }
+            })
+            .catch(errorResponse => {
+                if (errorResponse.status == 401) {
+                    localStorage.setItem(storage.user, "")
+                    window.location.href = "/login"
+                }
+            })
+        if (typeof window !== "undefined") {
+            const userInfo = localStorage.getItem("user_info");
+            if (userInfo) {
+                setIsUser(JSON.parse(userInfo));
+            }
+        }
+    }, []);
+
+
+    useEffect(() => {
+        cryptoMethods.getCurrenciesInfo()
+            .then((res) => {
+                res.data.forEach(currency => {
+                    if (currency.id === "bitcoin") setIsBtcInfo(currency)
+                    if (currency.id === "ethereum") setIsEthInfo(currency)
+                    if (currency.id === "tether") setIsTrc20Info(currency)
+                })
+            })
+    }, []);
+
+    const btcUsdBalance = (isBtcInfo.market_data.current_price.usd * Number(isBtcBalance)).toFixed(3)
+    const ethUsdBalance = (isEthInfo.market_data.current_price.usd * Number(isEthBalance)).toFixed(3)
+    const trc20UsdBalance = (isTrc20Info.market_data.current_price.usd * Number(isTrc20Balance)).toFixed(3)
+
+    const totalUsdBalance = (Number(btcUsdBalance) + Number(ethUsdBalance) + Number(trc20UsdBalance)).toFixed(3)
     return (
         <>
             <Provider store={store}>
@@ -54,27 +125,10 @@ export default function Wallet() {
                                                     <div className="left">
                                                         <p>Total Balance</p>
                                                         <div className="price">
-                                                            <h6>$ 0.79253864</h6>
+                                                            <h6>$ {totalUsdBalance}</h6>
                                                         </div>
                                                     </div>
                                                     <div className="right">
-                                                        <form action="wallet-assets">
-                                                            <div className="form-group">
-                                                                <input type="text" placeholder="Search" />
-                                                                <svg width={21} height={21} viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M20 20L15.514 15.506L20 20ZM18 9.5C18 11.7543 17.1045 13.9163 15.5104 15.5104C13.9163 17.1045 11.7543 18 9.5 18C7.24566 18 5.08365 17.1045 3.48959 15.5104C1.89553 13.9163 1 11.7543 1 9.5C1 7.24566 1.89553 5.08365 3.48959 3.48959C5.08365 1.89553 7.24566 1 9.5 1C11.7543 1 13.9163 1.89553 15.5104 3.48959C17.1045 5.08365 18 7.24566 18 9.5V9.5Z" stroke="#B1B5C3" strokeWidth={2} strokeLinecap="round" />
-                                                                </svg>
-                                                                <select aria-label="USD">
-                                                                    <option >USD</option>
-                                                                    <option value={1}>VND</option>
-                                                                    <option value={2}>USDT</option>
-                                                                    <option value={3}>USDC</option>
-                                                                </select>
-                                                            </div>
-                                                            <button type="submit" className="btn-action">
-                                                                Show balance
-                                                            </button>
-                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -96,26 +150,27 @@ export default function Wallet() {
                                                                 <span>1</span>
                                                             </td>
                                                             <td className="asset">
-                                                                <span className="icon-btc"><span className="path1" /><span className="path2" /></span>
+                                                                <img className={"overview-img"}
+                                                                     src={currencies[0].image}/>
                                                                 <p>
-                                                                    <span className="boild">USDT</span>
-                                                                    <span className="unit">Tether USD</span>
+                                                                    <span className="boild">BTC</span>
+                                                                    <span className="unit">Bitcoin</span>
                                                                 </p>
                                                             </td>
                                                             <td className="color-success">
-                                                                <span className="boild">7.46% APR</span>
+                                                                <span className="boild">0.00%</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">0.00 USDT</span>
+                                                                <span className="unit">$0.00</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">{isBtcBalance} USDT</span>
+                                                                <span className="unit">${btcUsdBalance}</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">{isBtcBalance} USDT</span>
+                                                                <span className="unit">${btcUsdBalance}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -123,26 +178,26 @@ export default function Wallet() {
                                                                 <span>2</span>
                                                             </td>
                                                             <td className="asset">
-                                                                <span className="icon-eth"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /></span>
+                                                                <img className={"overview-img"} src={currencies[1].image}/>
                                                                 <p>
-                                                                    <span className="boild">Ethereum</span>
-                                                                    <span className="unit">Tether USD</span>
+                                                                    <span className="boild">ETH</span>
+                                                                    <span className="unit">Ethereum</span>
                                                                 </p>
                                                             </td>
                                                             <td className="color-success">
-                                                                <span className="boild">7.46% APR</span>
+                                                                <span className="boild">0.00%</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">0.00 USDT</span>
+                                                                <span className="unit">$0.00</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">{isEthBalance} USDT</span>
+                                                                <span className="unit">${ethUsdBalance}</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">{isEthBalance} USDT</span>
+                                                                <span className="unit">${ethUsdBalance}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -150,26 +205,27 @@ export default function Wallet() {
                                                                 <span>3</span>
                                                             </td>
                                                             <td className="asset">
-                                                                <span className="icon-bnb"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /><span className="path5" /><span className="path6" /></span>
+                                                                <img className={"overview-img"}
+                                                                     src={currencies[2].image}/>
                                                                 <p>
-                                                                    <span className="boild">Binance</span>
-                                                                    <span className="unit">BNB</span>
+                                                                    <span className="boild">USDT</span>
+                                                                    <span className="unit">Tron USDT</span>
                                                                 </p>
                                                             </td>
                                                             <td className="color-success">
-                                                                <span className="boild">7.46% APR</span>
+                                                                <span className="boild">0.00%</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">0.00 USDT</span>
+                                                                <span className="unit">$0.00</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">{isTrc20Balance} USDT</span>
+                                                                <span className="unit">${trc20UsdBalance}</span>
                                                             </td>
                                                             <td>
-                                                                <span className="boild">0.2785689852 BTC</span>
-                                                                <span className="unit">$10,098.36</span>
+                                                                <span className="boild">{isTrc20Balance} USDT</span>
+                                                                <span className="unit">${trc20UsdBalance}</span>
                                                             </td>
                                                         </tr>
                                                     </tbody>

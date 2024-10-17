@@ -17,29 +17,8 @@ const cryptoMethods = {
             address: address
         })
     },
-    getBtcInfo: () => {
-        return axios.get(config.CRYPTO_API + "/api/bitcoin_info")
-    },
-    getEthInfo: () => {
-        return axios.get(config.CRYPTO_API + "/api/ethereum_info")
-    },
-    getUsdtInfo: () => {
-        return axios.get(config.CRYPTO_API + "/api/usdt_info")
-    },
-    getSolanaInfo: () => {
-        return axios.get(config.CRYPTO_API + "/api/solana_info")
-    },
-    getRippleInfo: () => {
-        return axios.get(config.CRYPTO_API + "/api/ripple_info")
-    },
-    getCardanoInfo: () => {
-        return axios.get(config.CRYPTO_API + "/api/cardano_info")
-    },
-    getAvalancheInfo: () => {
-        return axios.get(config.CRYPTO_API + "/api/avalanche_info")
-    },
-    getBnbInfo: () => {
-        return axios.get(config.CRYPTO_API + "/api/bnb_info")
+    getCurrenciesInfo: () => {
+        return axios.get(config.API + "/crypto/currencies")
     }
 }
 
