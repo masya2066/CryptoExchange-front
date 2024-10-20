@@ -11,20 +11,8 @@ import authMethods from "@/methods/auth";
 import {storage} from "@/storage";
 import cryptoMethods from "@/methods/crypto";
 import {defaultCurrecy} from "@/components/models/cryptoModels";
+
 export default function Wallet() {
-    const [flatTabs, setFlatTabs] = useState(1)
-    const [isUser, setIsUser] = useState({});
-    const [isBtcBalance, setIsBtcBalance] = useState("0.00")
-    const [isEthBalance, setIsEthBalance] = useState("0.00")
-    const [isTrc20Balance, setIsTrc20Balance] = useState("0.00")
-
-    const [isBtcInfo, setIsBtcInfo] = useState(defaultCurrecy)
-    const [isEthInfo, setIsEthInfo] = useState(defaultCurrecy)
-    const [isTrc20Info, setIsTrc20Info] = useState(defaultCurrecy)
-    const handleFlatTabs = (index) => {
-        setFlatTabs(index)
-    }
-
     const currencies = [
         {
             value: 'BTC',
@@ -42,6 +30,28 @@ export default function Wallet() {
             image: '/assets/images/icon/usdt-icon.svg'
         },
     ];
+
+    const [flatTabs, setFlatTabs] = useState(1)
+    const [isUser, setIsUser] = useState({});
+    const [isBtcBalance, setIsBtcBalance] = useState("0.00")
+    const [isEthBalance, setIsEthBalance] = useState("0.00")
+    const [isTrc20Balance, setIsTrc20Balance] = useState("0.00")
+    const [selectorValue, setSelectorValue] = useState(currencies[0].value)
+
+    const [isBtcInfo, setIsBtcInfo] = useState(defaultCurrecy)
+    const [isEthInfo, setIsEthInfo] = useState(defaultCurrecy)
+    const [isTrc20Info, setIsTrc20Info] = useState(defaultCurrecy)
+    const [isBtnDisabled, setIsBtnDisabled] = useState(true)
+    const [isAddress, setIsAddress] = useState("")
+    const [isAmount, setIsAmount] = useState(0)
+    const [isWithdrawSent, setIsWithdrawSent] = useState(false)
+    const [isError, setIsError] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isAmountError, setIsAmountError] = useState(false)
+
+    const handleFlatTabs = (index) => {
+        setFlatTabs(index)
+    }
 
     useEffect(() => {
         authMethods.userInfo()
@@ -97,44 +107,102 @@ export default function Wallet() {
             })
     }, []);
 
+    useEffect(() => {
+        console.log(isAddress.length)
+        if (isAddress.length >= 32 && Number(isAmount) > 0) {
+            if (Number(isAmount) <= Number(currencyBalance[selectorValue.toLowerCase()].total)) {
+                setIsAmountError(false)
+                setIsBtnDisabled(false)
+            } else {
+                setIsBtnDisabled(true)
+                setIsAmountError(true)
+            }
+        } else {
+            setIsBtnDisabled(true)
+        }
+    }, [isAddress, isAmount])
+
     const btcUsdBalance = (isBtcInfo.market_data.current_price.usd * Number(isBtcBalance)).toFixed(3)
     const ethUsdBalance = (isEthInfo.market_data.current_price.usd * Number(isEthBalance)).toFixed(3)
     const trc20UsdBalance = (isTrc20Info.market_data.current_price.usd * Number(isTrc20Balance)).toFixed(3)
 
     const totalUsdBalance = (Number(btcUsdBalance) + Number(ethUsdBalance) + Number(trc20UsdBalance)).toFixed(3)
+
+    const currencyBalance = {
+        btc: {
+            total: isBtcBalance,
+            usd: btcUsdBalance
+        },
+        ethereum: {
+            total: isEthBalance,
+            usd: ethUsdBalance
+        },
+        usdt: {
+            total: isTrc20Balance,
+            usd: trc20UsdBalance
+        }
+    }
+
+
+    const withdraw = () => {
+        setIsLoading(true)
+        cryptoMethods.withdraw(selectorValue.toLowerCase(), isAddress, Number(isAmount))
+            .then((res) => {
+                if (res.status == 200 && res.data.success) {
+                    setIsError(false)
+                    setIsWithdrawSent(true)
+                    setIsBtnDisabled(true)
+                    setIsLoading(false)
+                } else {
+                    console.error(res);
+                    setIsError(true)
+                    setIsLoading(false)
+                }
+            }).catch(e => {
+            console.error(e);
+            setIsError(true)
+            setIsLoading(false)
+        })
+    }
+
     return (
         <>
             <Provider store={store}>
-            <Layout headerStyle={1} footerStyle={2} breadcrumbTitle="Wallet">
-                <div>
-                    <section className="wallet buy-crypto flat-tabs">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-xl-3 col-md-12">
-                                    <ul className="menu-tab">
-                                        <li className={flatTabs === 1 ? "active" : ""} onClick={() => handleFlatTabs(1)}><h6 className="fs-16">Overview</h6></li>
-                                        <li className={flatTabs === 2 ? "active" : ""} onClick={() => handleFlatTabs(2)}><h6 className="fs-16">Withdraw</h6></li>
-                                    </ul>
-                                </div>
-                                <div className="col-xl-9 col-md-12">
-                                    <div className="content-tab">
-                                        <div className="content-inner" style={{ display: `${flatTabs === 1 ? "block" : "none"}` }}>
-                                            <div className="wallet-main">
-                                                <h4 className="heading">Overview</h4>
-                                                <div className="wallet-body">
-                                                    <div className="left">
-                                                        <p>Total Balance</p>
-                                                        <div className="price">
-                                                            <h6>$ {totalUsdBalance}</h6>
+                <Layout headerStyle={1} footerStyle={2} breadcrumbTitle="Wallet">
+                    <div>
+                        <section className="wallet buy-crypto flat-tabs">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-xl-3 col-md-12">
+                                        <ul className="menu-tab">
+                                            <li className={flatTabs === 1 ? "active" : ""}
+                                                onClick={() => handleFlatTabs(1)}><h6 className="fs-16">Overview</h6>
+                                            </li>
+                                            <li className={flatTabs === 2 ? "active" : ""}
+                                                onClick={() => handleFlatTabs(2)}><h6 className="fs-16">Withdraw</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="col-xl-9 col-md-12">
+                                        <div className="content-tab">
+                                            <div className="content-inner"
+                                                 style={{display: `${flatTabs === 1 ? "block" : "none"}`}}>
+                                                <div className="wallet-main">
+                                                    <h4 className="heading">Overview</h4>
+                                                    <div className="wallet-body">
+                                                        <div className="left">
+                                                            <p>Total Balance</p>
+                                                            <div className="price">
+                                                                <h6>$ {totalUsdBalance}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div className="right">
                                                         </div>
                                                     </div>
-                                                    <div className="right">
-                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="coin-list-wallet">
-                                                <table className="table">
-                                                    <thead>
+                                                <div className="coin-list-wallet">
+                                                    <table className="table">
+                                                        <thead>
                                                         <tr>
                                                             <th scope="col">#</th>
                                                             <th className="center" scope="col">Asset</th>
@@ -143,8 +211,8 @@ export default function Wallet() {
                                                             <th scope="col">Available balance</th>
                                                             <th scope="col">Total balance</th>
                                                         </tr>
-                                                    </thead>
-                                                    <tbody>
+                                                        </thead>
+                                                        <tbody>
                                                         <tr>
                                                             <td className="number">
                                                                 <span>1</span>
@@ -178,7 +246,8 @@ export default function Wallet() {
                                                                 <span>2</span>
                                                             </td>
                                                             <td className="asset">
-                                                                <img className={"overview-img"} src={currencies[1].image}/>
+                                                                <img className={"overview-img"}
+                                                                     src={currencies[1].image}/>
                                                                 <p>
                                                                     <span className="boild">ETH</span>
                                                                     <span className="unit">Ethereum</span>
@@ -228,48 +297,74 @@ export default function Wallet() {
                                                                 <span className="unit">${trc20UsdBalance}</span>
                                                             </td>
                                                         </tr>
-                                                    </tbody>
-                                                </table>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="content-inner" style={{ display: `${flatTabs === 2 ? "block" : "none"}` }}>
-                                            <div className="wallet-main">
-                                                <h4 className="heading">Withdraw</h4>
-                                                <div className="wallet-body">
-                                                    <div className="left">
-                                                        <p>Total Balance</p>
-                                                        <div className="price">
-                                                            <h6>0.79253864</h6>
-                                                            <div className="sale success">BTC</div>
+                                            <div className="content-inner"
+                                                 style={{display: `${flatTabs === 2 ? "block" : "none"}`}}>
+                                                <div className="wallet-main">
+                                                    <h4 className="heading">Withdraw</h4>
+                                                    <div className="wallet-body">
+                                                        <div className="left">
+                                                            <p>Total Balance</p>
+                                                            <div className="price">
+                                                                <h6>{currencyBalance[selectorValue.toLowerCase()].total}</h6>
+                                                                <div className="sale success">{selectorValue}</div>
+                                                            </div>
+                                                            <p>${currencyBalance[selectorValue.toLowerCase()].usd}</p>
                                                         </div>
-                                                        <p>$12,068.83</p>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="wallet-withdraw">
-                                                <div className={"inputs-container"}>
-                                                    <BaseSelector
-                                                    data={currencies}
-                                                    label={"Currency"}
-                                                    defaultValue={currencies[0].value}
-                                                    />
-                                                    <BaseInput placeholder={"Address"}/>
-                                                    <BaseInput placeholder={"Amount"}/>
-                                                </div>
-                                                <div className={"button-container"}>
-                                                    <LoadButton label={"Submit"}/>
+                                                <div className="wallet-withdraw">
+                                                    <div className={"inputs-container"}>
+                                                        <BaseSelector
+                                                            data={currencies}
+                                                            label={"Currency"}
+                                                            onChange={(e) => setSelectorValue(e.target.value)}
+                                                            defaultValue={currencies[0].value}
+                                                        />
+                                                        <BaseInput
+                                                            onChange={(e) => setIsAddress(e.target.value)}
+                                                            placeholder={"Address"}/>
+                                                        <BaseInput
+                                                            type={"number"}
+                                                            error={isAmountError}
+                                                            onChange={(e) => setIsAmount(e.target.value)}
+                                                            placeholder={"Amount"}/>
+                                                    </div>
+                                                    <div className={"button-container"}>
+                                                        {isWithdrawSent && <p style={{
+                                                            display: "flex",
+                                                            width: "100%",
+                                                            justifyContent: "center",
+                                                            color: "lightgreen",
+                                                            margin: "0 0 20px 0"
+                                                        }}>Your request was registered. Check your E-Mail</p>}
+                                                        {isError && <p style={{
+                                                            display: "flex",
+                                                            width: "100%",
+                                                            justifyContent: "center",
+                                                            color: "red",
+                                                            margin: "0 0 20px 0"
+                                                        }}>Internal error</p>}
+                                                        <LoadButton
+                                                            onClick={withdraw}
+                                                            loading={isLoading}
+                                                            disabled={isBtnDisabled}
+                                                            label={"Submit"}/>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                    <CreateAccountBanner/>
-                </div>
+                        </section>
+                        <CreateAccountBanner/>
+                    </div>
 
-            </Layout>
+                </Layout>
             </Provider>
         </>
     )

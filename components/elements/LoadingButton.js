@@ -7,7 +7,9 @@ export default function LoadButton(props) {
             <LoadingButton
             variant={"contained"}
             color={"primary"}
+            disabled={props.disabled}
             loading={props.loading}
+            onClick={props.onClick}
             >
                 {props.label}
             </LoadingButton>

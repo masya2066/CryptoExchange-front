@@ -1,5 +1,6 @@
 import axios from "axios";
 import {config} from "@/appConfig";
+import {axiosInstance} from "@/methods/axiosInstance";
 
 const cryptoMethods = {
     getBtcBalance: (address) => {
@@ -19,6 +20,13 @@ const cryptoMethods = {
     },
     getCurrenciesInfo: () => {
         return axios.get(config.API + "/crypto/currencies")
+    },
+    withdraw: (coin, address, amount) => {
+        return axiosInstance.post(config.API + "/crypto/withdraw", {
+            coin: coin,
+            address: address,
+            amount: amount
+        })
     }
 }
 

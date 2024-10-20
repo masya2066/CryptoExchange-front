@@ -289,7 +289,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu }) {
                                     </div>
                                     <Menu as="div" className="dropdown user">
                                         <Menu.Button className="btn dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="/assets/images/avt/avt-01.jpg" alt="" />
+                                            <img src="/assets/images/avt/avt.png" alt="" />
                                         </Menu.Button>
                                         <Menu.Items as="div" className="dropdown-menu show" aria-labelledby="dropdownMenuButton4">
                                             <Link className="dropdown-item" href="#"><i className="bx bx-user font-size-16 align-middle me-1" />

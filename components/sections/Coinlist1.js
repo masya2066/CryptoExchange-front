@@ -86,7 +86,7 @@ export default function Coinlist1() {
                                                         </td>
                                                         <td className="boild">${isBtc.market_data.market_cap.usd.toLocaleString('en-US')}</td>
                                                         <td>
-                                                            <ChatList color={isBtc.market_data.price_change_percentage_7d > 0 ? 1 : 2} />
+                                                            <ChatList color={isBtc.market_data.price_change_percentage_7dnp  > 0 ? 1 : 2} />
                                                         </td>
                                                     </tr>
                                                     <tr>

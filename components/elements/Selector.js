@@ -11,6 +11,7 @@ export default function BaseSelector(props) {
                 select
                 label={props.label}
                 error={props.error}
+                onChange={props.onChange}
                 defaultValue={props.defaultValue}
             >
                 {props.data.map((option) => (

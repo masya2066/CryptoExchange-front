@@ -1,17 +1,15 @@
 import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
-import {storage} from "@/storage";
 import authMethods from "@/methods/auth";
 import {Provider, useDispatch} from "react-redux";
 import {LoaderButton} from "@/app/buttons/LoaderButton";
-import {useNavigate} from "react-router-dom";
 import store from "@/store";
 
 export default function RegisterModal() {
-    const email = useRef('');
+    const [email, setEmail] = useState('')
     const [isPassword, setIsPassword] = useState('');
     const [isRePassword, setIsRePassword] = useState('');
-    const login = useRef('');
+    const [login, setLogin] = useState('')
     const referralCode = useRef('');
     const [isDisabledBtn, setIsDisabledBtn] = useState(true);
     const [isLoadingReg, setIsLoadingReg] = useState(false)
@@ -21,7 +19,7 @@ export default function RegisterModal() {
     const register = () => {
 
         setIsLoadingReg(true)
-        authMethods.register(email.current, isPassword, login.current, referralCode.current).then((res) => {
+        authMethods.register(email, isPassword, login, referralCode.current).then((res) => {
             if (res?.status === 200 && res?.data) {
                 dispatch({type: 'authStatus', payload: {isAuth: true}})
                 setIsLoadingReg(false)
@@ -36,12 +34,14 @@ export default function RegisterModal() {
     useEffect(() => {
         if (isPassword === isRePassword) {
             if (isPassword.length >= 8) {
-                if (email.current.length >= 5 && login.current.length >= 6) {
+                if (email.length >= 5 && login.length >= 6) {
                     setIsDisabledBtn(false);
+                } else {
+                    setIsDisabledBtn(true)
                 }
             }
         }
-    }, [isPassword, isRePassword, email.current, login.current]);
+    }, [isPassword, isRePassword, email, login]);
 
     return (
         <>
@@ -50,7 +50,7 @@ export default function RegisterModal() {
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email</label>
                     <input
-                        onChange={(e) => email.current = e.target.value}
+                        onChange={(e) => setEmail(e.target.value)}
                         type="email"
                         className="form-control"
                         id="exampleInputEmail1"
@@ -61,7 +61,7 @@ export default function RegisterModal() {
                     <label>Login
                         <span className="fs-14"> (Excluding special characters)</span></label>
                     <input
-                        onChange={(e) => login.current = e.target.value}
+                        onChange={(e) => setLogin(e.target.value)}
                         type="text"
                         className="form-control"
                         placeholder="Enter Login"
@@ -75,12 +75,14 @@ export default function RegisterModal() {
                         </span>
                     </label>
                     <input
+                        style={{margin: "10px 0"}}
                         onChange={(e) => setIsPassword(e.target.value)}
                         type="password"
                         className="form-control"
                         placeholder="Please enter a password."
                     />
                     <input
+                        style={{margin: "10px 0"}}
                         onChange={(e) => setIsRePassword(e.target.value)}
                         type="password"
                         className="form-control"

@@ -76,7 +76,7 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
             {footerStyle == 1 ? < Footer1 /> : null}
             {footerStyle == 2 ? < Footer2 /> : null}
 
-            <BackToTop target="#top" />
+            {/*<BackToTop target="#top" />*/}
                 </Provider>
         </Providers>
         </>

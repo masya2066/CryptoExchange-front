@@ -8,6 +8,8 @@ export default function BaseInput(props) {
                 error={props.error}
                 variant={'outlined'}
                 color={"secondary"}
+                type={props.type}
+                onChange={props.onChange}
                 placeholder={props.placeholder}
             />
             <p style={{color: "red", paddingLeft: "10px"}}>

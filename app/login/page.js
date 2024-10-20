@@ -17,7 +17,7 @@ export default function Login() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="block-text center">
-                                        <h3 className="heading">Login To Rockie</h3>
+                                        <h3 className="heading">Login To Finchain</h3>
                                         <p className="desc fs-20">
                                             Welcome back! Log In now to start trading
                                         </p>
@@ -29,7 +29,7 @@ export default function Login() {
                                                     <path d="M8.00039 0C5.08223 0 2.72656 2.35562 2.72656 5.27383V7.3234C3.20102 7.17391 3.69582 7.07086 4.21898 7.07086H5.07051V5.27383C5.07051 3.65652 6.38309 2.34395 8.00039 2.34395C9.6177 2.34395 10.9303 3.65652 10.9303 5.27383V7.07082H11.5163C12.1356 7.07082 12.7216 7.19777 13.2742 7.3948V5.27383C13.2742 2.35844 10.9128 0 8.00039 0Z" fill="white" />
                                                 </svg>
                                             </div>
-                                            <p><span>https://</span>accounts.rockie.com/login</p>
+                                            <p><span>https://</span>finchain.app/login</p>
                                         </div>
                                     </div>
                                 </div>

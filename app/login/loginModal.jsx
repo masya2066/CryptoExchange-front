@@ -8,12 +8,14 @@ import {LoaderButton} from "@/app/buttons/LoaderButton";
 import authSlice, {authStatus} from "@/store/authSlice";
 import auth from "@/methods/auth";
 
-export default function LoginModal () {
+export default function LoginModal() {
     const [isEmail, setIsEmail] = useState('');
     const [isPassword, setIsPassword] = useState('');
     const isRemember = useRef(false)
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
     const [isDisabledBtn, setIsDisabledBtn] = useState(true)
+    const [isError, setIsError] = useState(false)
+    const [isErrText, setIsErrText] = useState("")
     const dispatch = useDispatch()
 
     const logIn = () => {
@@ -31,21 +33,27 @@ export default function LoginModal () {
                         setIsLoadingBtn(false)
                         window.location.href = '/user-profile'
                     }).catch(e => {
-                        setIsLoadingBtn(false)
-                        dispatch(authStatus({isAuth: false}))
-                        console.error(e.response)
+                        if (e.status === 401) {
+                            setIsError(true)
+                            setIsErrText("Incorrect email/login or password")
+                        }
+                    setIsLoadingBtn(false)
+                    dispatch(authStatus({isAuth: false}))
                 })
             }
         }).catch(e => {
+            if (e.status === 401) {
+                setIsError(true)
+                setIsErrText("Incorrect email/login or password")
+            }
             setIsLoadingBtn(false)
             dispatch(authStatus({isAuth: false}))
         })
     }
 
 
-
     useEffect(() => {
-        if (localStorage.getItem(storage.user) == ""){
+        if (localStorage.getItem(storage.user) == "") {
             dispatch(authStatus({isAuth: false}))
         }
         if (isEmail.length >= 5 && isPassword.length >= 8) {
@@ -82,13 +90,18 @@ export default function LoginModal () {
                                 </div>
                                 <p className={"forgot-password-button"}>Forgot Password?</p>
                             </div>
+                            <div className={"modal-error-container"}>
+                                {isError &&
+                                    <p className={"modal-error-text"}>{isErrText}</p>
+                                }
+                            </div>
                             <LoaderButton
-                                          onClick={() => logIn()}
-                                          text={"Login"}
-                                          disabled={isDisabledBtn}
-                                          loading={isLoadingBtn}
-                                          type="submit"
-                                          className="btn-action"/>
+                                onClick={() => logIn()}
+                                text={"Login"}
+                                disabled={isDisabledBtn}
+                                loading={isLoadingBtn}
+                                type="submit"
+                                className="btn-action"/>
                             <div className="bottom">
                                 <p>Not a member?</p>
                                 <Link href="/register">Register</Link>

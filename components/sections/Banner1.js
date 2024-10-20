@@ -42,19 +42,13 @@ export default function Banner1() {
                                         <div className="swiper swiper-partner">
                                             <Swiper {...swiperOptions} className="swiper-wrapper">
                                                 <SwiperSlide>
-                                                    <Link href="#"><img src="/assets/images/partner/logo-01.png" alt="" /></Link>
+                                                    <Link href="#"><img src="/assets/images/icon/binance-logo.svg" alt="" /></Link>
                                                 </SwiperSlide>
                                                 <SwiperSlide>
-                                                    <Link href="#"><img src="/assets/images/partner/logo-02.png" alt="" /></Link>
+                                                    <Link href="#"><img src="/assets/images/icon/bybit-logo.svg" alt="" /></Link>
                                                 </SwiperSlide>
                                                 <SwiperSlide>
-                                                    <Link href="#"><img src="/assets/images/partner/logo-03.png" alt="" /></Link>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <Link href="#"><img src="/assets/images/partner/logo-04.png" alt="" /></Link>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <Link href="#"><img src="/assets/images/partner/logo-01.png" alt="" /></Link>
+                                                    <Link href="#"><img src="/assets/images/icon/ethereum-logo.svg" alt="" /></Link>
                                                 </SwiperSlide>
                                             </Swiper>
                                         </div>

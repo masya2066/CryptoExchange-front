@@ -18,7 +18,7 @@ export default function Register() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="block-text center">
-                                        <h3 className="heading">Sign up To Rockie</h3>
+                                        <h3 className="heading">Sign up To Finchain</h3>
                                         <p className="desc fs-20">
                                             Sign up in advance and enjoy the event benefits
                                         </p>
