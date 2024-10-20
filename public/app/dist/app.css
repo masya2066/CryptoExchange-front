@@ -760,6 +760,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
         flex-direction: column;
         justify-content: center;
         gap: 25px;
+        margin-top: 30px;
         background: var(--surface);
         padding: 30px 100px 30px 100px;
         border-radius: 20px;

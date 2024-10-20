@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
+import {useDispatch, useSelector} from "react-redux";
 
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
@@ -13,6 +14,10 @@ const swiperOptions = {
 }
 
 export default function About1() {
+
+    const dispatch = useDispatch()
+    const isAuth = useSelector(state => state.authSlices.isAuth)
+
     return (
         <>
 
@@ -61,7 +66,8 @@ export default function About1() {
                                         </h6>
                                     </li>
                                 </ul>
-                                <Link href="/user-profile" className="btn-action">Start Now</Link>
+                                {isAuth ? <Link href="/deposit" className="btn-action">Deposit now</Link> :
+                                    <Link href="/user-profile" className="btn-action">Start Now</Link>}
                             </div>
                         </div>
                     </div>
