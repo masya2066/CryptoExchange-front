@@ -757,6 +757,22 @@ body[data-magic-cursor=hide] .mouse-cursor {
     }
 }
 
+@media (max-width: 767px) {
+    .wallet {
+        .wallet-withdraw {
+            padding: 20px 40px 20px 40px;
+            .inputs-container {
+                padding: 0;
+            }
+            .button-container {
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+
 .header .header__left .main-nav .menu li:hover .sub-menu {
     opacity: 1;
     visibility: visible;

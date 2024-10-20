@@ -35,20 +35,20 @@ export default function Banner1() {
                                 <p className="fs-20 desc">
                                     Finchain offers you the most favorable conditions for cryptocurrency trading.
                                 </p>
-                                <Link href="#" className="btn-action"><span>Get started now</span></Link>
+                                <Link href="/login" className="btn-action"><span>Get started now</span></Link>
                                 <div className="partner">
                                     <h6>Our Partners</h6>
                                     <div className="partner__list">
                                         <div className="swiper swiper-partner">
                                             <Swiper {...swiperOptions} className="swiper-wrapper">
-                                                <SwiperSlide>
+                                                <SwiperSlide style={{display: "flex", justifyContent: "center", margin: "auto"}}>
                                                     <Link href="#"><img src="/assets/images/icon/binance-logo.svg" alt="" /></Link>
                                                 </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <Link href="#"><img src="/assets/images/icon/bybit-logo.svg" alt="" /></Link>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
+                                                <SwiperSlide style={{display: "flex", justifyContent: "center", margin: "auto"}}>
                                                     <Link href="#"><img src="/assets/images/icon/ethereum-logo.svg" alt="" /></Link>
+                                                </SwiperSlide>
+                                                <SwiperSlide style={{display: "flex", justifyContent: "center", margin: "auto"}}>
+                                                    <Link href="#"><img src="/assets/images/icon/bybit-logo.svg" alt="" /></Link>
                                                 </SwiperSlide>
                                             </Swiper>
                                         </div>

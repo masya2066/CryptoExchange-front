@@ -33,7 +33,7 @@ export default function Testimonials1() {
                             <div className="block-text">
                                 <h3 className="heading">Our customers love what we do</h3>
                                 <h6 className="fs-20">
-                                    Transform Your idea into Reality With Finsweet
+                                    Transform Your idea into Reality With Finchain
                                 </h6>
                                 <p>
                                     It is a long established fact that a reader will be distracted
