@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             <link rel="manifest" href="/manifest.json"/>
             <link rel="apple-touch-icon" sizes="192x192" href="assets/images/logo/favicon.png"/>
             <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
-            <meta name="theme-color" content="#000000"/>
+            <meta name="theme-color" content="white"/>
         </Head>
         <body className={`${poppins.variable} ${dm.variable} body header-fixed`}>{children}</body>
         </html>

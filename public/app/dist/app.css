@@ -1115,7 +1115,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 .banner {
     background: var(--surface);
-    padding: 84px 0 145px;
+    padding: 84px 0 30px;
 }
 
 .banner .banner__content .title {
@@ -1418,7 +1418,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
 }
 
 .coin-list {
-    padding: 100px 0 59px;
+    padding: 0 0 59px;
 }
 
 .coin-list .block-text {
@@ -2518,6 +2518,12 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 .download .download__content {
     padding-right: 30px;
+}
+
+@media (max-width: 1024px) {
+    .download .download__content {
+        padding-bottom: 50px;
+    }
 }
 
 .download .download__content .heading {
