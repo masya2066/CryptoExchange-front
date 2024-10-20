@@ -662,6 +662,27 @@ body[data-magic-cursor=hide] .mouse-cursor {
     transition: 0.3s all ease-in-out;
 }
 
+.auth-menu-buttons-header {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .auth-menu-buttons-header {
+        display: block;
+    }
+}
+
+.header-sign-buttons {
+    display: flex;
+    flexDirection: row;
+}
+
+@media (max-width: 991px) {
+    .header-sign-buttons {
+        display: none;
+    }
+}
+
 .header .header__left .main-nav .menu li .sub-menu li {
     padding: 5px 20px;
     position: relative;
@@ -954,7 +975,8 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 .header .header__right .user .dropdown-menu.show {
     left: auto !important;
-    right: 0;
+    right: -30px;
+    top: 0;
     transform: translate3d(0, 42px, 0px) !important;
 }
 

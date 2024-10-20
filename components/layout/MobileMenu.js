@@ -4,6 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Providers from "@/components/layout/Providers";
+import {useDispatch, useSelector} from "react-redux";
+import authMethods from "@/methods/auth";
+import {storage} from "@/storage";
+import {authStatus} from "@/store/authSlice";
 
 export default function MobileMenu({ isMobileMenu }) {
     const [isActive, setIsActive] = useState(0)
@@ -14,10 +18,22 @@ export default function MobileMenu({ isMobileMenu }) {
     const pathname = usePathname()
     const [currentMenuItem, setCurrentMenuItem] = useState("")
 
+    const dispatch = useDispatch()
+    const isAuth = useSelector(state => state.authSlices.isAuth)
+
 
     useEffect(() => {
         setCurrentMenuItem(pathname)
     }, [pathname])
+
+    const logout = () => {
+        authMethods.logout()
+        localStorage.removeItem(storage.accessToken)
+        localStorage.removeItem(storage.accessToken)
+        localStorage.removeItem(storage.user)
+        dispatch(authStatus({isAuth: false}))
+        window.location.href = '/login';
+    }
 
     const checkCurrentMenuItem = (path) => currentMenuItem === path ? "current-item" : ""
     const checkParentActive = (paths) => paths.some(path => currentMenuItem.startsWith(path)) ? "current-menu-item" : ""
@@ -33,8 +49,8 @@ export default function MobileMenu({ isMobileMenu }) {
                         "/buy-crypto-confirm",
                         "/buy-crypto-details",])}`}>
                         <Link href="#">Buy/Sell Crypto</Link>
-                        <span className="arrow" onClick={() => handleClick(2)} />
-                        <ul className="sub-menu" style={{ display: `${isActive == 2 ? "block" : "none"}` }}>
+                        <span className="arrow" onClick={() => handleClick(2)}/>
+                        <ul className="sub-menu" style={{display: `${isActive == 2 ? "block" : "none"}`}}>
                             <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-select")}`}>
                                 <Link href="/buy-crypto-select">Buy/Sell Crypto Select</Link>
                             </li>
@@ -46,6 +62,31 @@ export default function MobileMenu({ isMobileMenu }) {
                             </li>
                         </ul>
                     </li>
+                    {
+                        isAuth ?
+                            <>
+                                <li className={`menu-item menu-item-has-children`}>
+                                    <Link href="/user-profile">Profile </Link>
+                                </li>
+                                <li className={`menu-item menu-item-has-children`}>
+                                    <Link href="/wallet">Wallet </Link>
+                                </li>
+                                <li className={`menu-item menu-item-has-children`}>
+                                    <Link href="/deposit">Deposit </Link>
+                                </li>
+                                <li className={`menu-item menu-item-has-children`}>
+                                    <Link onClick={() => logout()} href="/login">Logout </Link>
+                                </li>
+                            </> :
+                            <>
+                                <li className={`menu-item menu-item-has-children ${checkParentActive(["/home-v2", "/home-v3"])}`}>
+                                    <Link href="/login">Sign In </Link>
+                                </li>
+                                <li className={`menu-item menu-item-has-children ${checkParentActive(["/home-v2", "/home-v3"])}`}>
+                                    <Link href="/register">Sign Up </Link>
+                                </li>
+                            </>
+                    }
                 </ul>
             </nav>
             </Providers>

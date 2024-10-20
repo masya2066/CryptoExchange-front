@@ -39,7 +39,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                     localStorage.removeItem(storage.user)
                 }
             }).catch(e => {
-                console.error(e)
+                console.log(e)
             localStorage.removeItem(storage.accessToken)
             localStorage.removeItem(storage.accessToken)
             localStorage.removeItem(storage.user)
@@ -74,7 +74,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                 </div>
                                 <div className="header__right">
                                     <ThemeSwitch/>
-                                    {isAuth ? <div style={{display: "flex", flexDirection: "row"}}>
+                                    {isAuth ? <div className={"header-sign-buttons"}>
                                             <div className="wallet">
                                                 <Link href="/wallet"> Wallet </Link>
                                             </div>
@@ -82,14 +82,14 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                                 <Link href="/deposit"> Deposit </Link>
                                             </div>
                                         </div> :
-                                        <>
+                                        <div className={"header-sign-buttons"}>
                                             <div className="wallet">
                                                 <Link href="/login"> Sign In </Link>
                                             </div>
                                             <div className="wallet">
                                                 <Link href="/register"> Sign Up </Link>
                                             </div>
-                                        </>
+                                        </div>
                                     }
                                     <div className="d-block d-lg-none">
                                         <div className={`mobile-button d-block ${isMobileMenu ? "active" : ""}`}
