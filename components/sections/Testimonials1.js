@@ -78,7 +78,7 @@ export default function Testimonials1() {
                                                         <p className="position">Director, Company</p>
                                                     </div>
                                                 </div>
-                                                <img src="/assets/images/partner/logo-05.png" alt="" />
+                                                <img src="/assets/images/icon/ethereum-logo.svg" alt="" />
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -99,7 +99,7 @@ export default function Testimonials1() {
                                                         <p className="position">Director, Company</p>
                                                     </div>
                                                 </div>
-                                                <img src="/assets/images/partner/logo-05.png" alt="" />
+                                                <img src="/assets/images/icon/ethereum-logo.svg" alt="" />
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -120,7 +120,7 @@ export default function Testimonials1() {
                                                         <p className="position">Director, Company</p>
                                                     </div>
                                                 </div>
-                                                <img src="/assets/images/partner/logo-05.png" alt="" />
+                                                <img src="/assets/images/icon/ethereum-logo.svg" alt="" />
                                             </div>
                                         </div>
                                     </SwiperSlide>

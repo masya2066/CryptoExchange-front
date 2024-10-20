@@ -61,7 +61,7 @@ export default function About1() {
                                         </h6>
                                     </li>
                                 </ul>
-                                <Link href="#" className="btn-action">Start Now</Link>
+                                <Link href="/user-profile" className="btn-action">Start Now</Link>
                             </div>
                         </div>
                     </div>

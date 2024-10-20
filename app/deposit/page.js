@@ -8,6 +8,7 @@ import QRCodeGen from "@/components/elements/QrCodeGenerator";
 import authMethods from "@/methods/auth";
 import {storage} from "@/storage";
 import cryptoMethods from "@/methods/crypto";
+
 export default function Deposit() {
 
     const [flatTabs, setFlatTabs] = useState(1)
@@ -88,7 +89,8 @@ export default function Deposit() {
                                                 onClick={() => handleFlatTabs(2)}><h6 className="fs-16">Ethereum</h6>
                                             </li>
                                             <li className={flatTabs === 3 ? "active" : ""}
-                                                onClick={() => handleFlatTabs(3)}><h6 className="fs-16">USDT (TRC20)</h6>
+                                                onClick={() => handleFlatTabs(3)}><h6 className="fs-16">USDT
+                                                (TRC20)</h6>
                                             </li>
                                         </ul>
                                     </div>
@@ -118,9 +120,11 @@ export default function Deposit() {
                                                     </div>
                                                     <div className={"fields-container"}>
                                                         <div className={"copy-field"}>
-                                                            Address: {isUser.btc_address}
+                                                            <div className={"pc-address"}>Address: {isUser.btc_address}</div>
+                                                            <div className={"mobile-address"}>Click to copy Address
+                                                            </div>
                                                             <img src={"/assets/images/icon/copy-icon.png"}
-                                                            onClick={() => handleCopy(isUser.btc_address)}
+                                                                 onClick={() => handleCopy(isUser.btc_address)}
                                                             />
                                                         </div>
                                                     </div>
@@ -149,7 +153,9 @@ export default function Deposit() {
                                                     </div>
                                                     <div className={"fields-container"}>
                                                         <div className={"copy-field"}>
-                                                            Address: {isUser.eth_address}
+                                                            <div className={"pc-address"}>Address: {isUser.btc_address}</div>
+                                                            <div className={"mobile-address"}>Click to copy Address
+                                                            </div>
                                                             <img src={"/assets/images/icon/copy-icon.png"}
                                                                  onClick={() => handleCopy(isUser.eth_address)}
                                                             />
@@ -181,7 +187,9 @@ export default function Deposit() {
                                                     </div>
                                                     <div className={"fields-container"}>
                                                         <div className={"copy-field"}>
-                                                            Address: {isUser.trx_address}
+                                                            <div className={"pc-address"}>Address: {isUser.btc_address}</div>
+                                                            <div className={"mobile-address"}>Click to copy Address
+                                                            </div>
                                                             <img src={"/assets/images/icon/copy-icon.png"}
                                                                  onClick={() => handleCopy(isUser.trx_address)}
                                                             />

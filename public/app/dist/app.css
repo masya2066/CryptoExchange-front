@@ -2520,7 +2520,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
     padding-right: 30px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .download .download__content {
         padding-bottom: 50px;
     }
@@ -4619,19 +4619,49 @@ body[data-magic-cursor=hide] .mouse-cursor {
             .copy-field {
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                padding: 10px 15px 10px 15px;
+                justify-content: space-between; /* Разделяет текст и иконку */
                 border-radius: 10px;
                 border: 1px solid var(--line);
+                padding: 10px 15px;
+                overflow: hidden;
+                word-wrap: break-word; /* Перенос слов на новую строку */
+                white-space: normal; /* Разрешает перенос строк */
+
+                .mobile-address {
+                    display: none;
+                }
 
                 img {
                     fill: var(--line);
                     margin: 0 10px 0 10px;
                     width: 20px;
                     height: 20px;
+                    flex-shrink: 0; /* Запрещает сжатие иконки */
 
                     &:hover {
                         cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .wallet {
+        .wallet-deposit-main {
+            .fields-container {
+                .copy-field {
+                    .mobile-address {
+                        display: block;
+                    }
+
+                    .pc-address {
+                        display: none;
+                    }
+                    img {
+                        width: 15px;
+                        height: 15px;
                     }
                 }
             }

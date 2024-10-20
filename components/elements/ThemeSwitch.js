@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 export default function ThemeSwitch() {
     const [togglETHeme, setTogglETHeme] = useState(
-        () => JSON.parse(localStorage.getItem("togglETHeme")) || "is_light"
+        () => JSON.parse(localStorage.getItem("togglETHeme")) || "is_dark"
     )
     useEffect(() => {
         localStorage.setItem("togglETHeme", JSON.stringify(togglETHeme))
