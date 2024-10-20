@@ -64,6 +64,7 @@
   color: #3772ff;
 }
 .icon-check:before {
+  margin: 10px;
   content: "\e905";
   color: #3772ff;
 }

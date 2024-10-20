@@ -1194,6 +1194,12 @@ body[data-magic-cursor=hide] .mouse-cursor {
     margin-top: -3px;
 }
 
+@media only screen and (max-width: 767px) {
+    .banner .banner__image {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 1200px) {
     .banner .banner__image {
         text-align: center;
@@ -1746,6 +1752,12 @@ body[data-magic-cursor=hide] .mouse-cursor {
     background: var(--surface);
 }
 
+@media (max-width: 767px) {
+    .work {
+        padding: 10px 0;
+    }
+}
+
 .work .block-text .heading {
     margin-bottom: 16px;
 }
@@ -1845,6 +1857,12 @@ body[data-magic-cursor=hide] .mouse-cursor {
     padding: 100px 0 95px;
 }
 
+@media (max-width: 767px) {
+    .about {
+        padding: 10px 0 9px;
+    }
+}
+
 .about .about_image {
     margin-left: -16px;
     margin-top: 2px;
@@ -1854,7 +1872,12 @@ body[data-magic-cursor=hide] .mouse-cursor {
 .about .about_image .img-swiper {
     position: relative;
     z-index: 0;
-    padding-top: 70px;
+}
+
+@media (max-width: 767px) {
+    .about .about_image .img-swiper {
+        display: none;
+    }
 }
 
 .about .about_image .img-swiper .img-main {
@@ -1902,6 +1925,28 @@ body[data-magic-cursor=hide] .mouse-cursor {
 .about .about_image .icon.icon-5 {
     bottom: 13px;
     left: -20px;
+}
+
+@media (max-width: 767px) {
+    .about .about_image .icon.icon-1 {
+        display: none;
+    }
+
+    .about .about_image .icon.icon-2 {
+        display: none;
+    }
+
+    .about .about_image .icon.icon-3 {
+        display: none;
+    }
+
+    .about .about_image .icon.icon-4 {
+        display: none;
+    }
+
+    .about .about_image .icon.icon-5 {
+        display: none;
+    }
 }
 
 .about .about__content {
@@ -2496,6 +2541,14 @@ body[data-magic-cursor=hide] .mouse-cursor {
     background: var(--surface);
 }
 
+@media only screen and (max-width: 767px) {
+    .download {
+        padding: 20px 0 20px 0;
+        background: var(--surface);
+    }
+
+}
+
 .download .download__image {
     position: relative;
     margin-left: 30px;
@@ -2588,6 +2641,12 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 .testimonials {
     padding: 100px 0;
+}
+
+@media only screen and (max-width: 767px) {
+    .testimonials {
+        padding: 20px 0;
+    }
 }
 
 .testimonials .block-text {
