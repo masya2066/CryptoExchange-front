@@ -30,6 +30,7 @@
     --highlight: #ff7f50; /* Coral for subtle attention-grabbing elements */
     --dm: "DM Sans", sans-serif; /* Clean and modern font */
     --poppins: "Poppins", sans-serif; /* Clean font for headers */
+    --tabletext: #202228;
 }
 
 
@@ -40,6 +41,7 @@
     --surface: #18191d;
     --line: #23262f;
     --text: #b1b5c3;
+    --tabletext: #7c878c;
 }
 
 body {
@@ -4869,6 +4871,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 .wallet .coin-list-wallet table.table {
     text-align: right;
+    color: var(--tabletext);
 }
 
 .wallet .coin-list-wallet table.table thead tr th {
