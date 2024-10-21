@@ -8,7 +8,7 @@ export default function Download() {
             <section className="download">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xl-1 col-md-5">
+                        <div className="col-xl-5 col-md-12">
                             <div className="download__content" data-aos="fade-up" data-aos-duration={1000}>
                                 <h3 className="heading">Free your money &amp; Invest with confident</h3>
                                 <p className="fs-20 decs">

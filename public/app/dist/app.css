@@ -4874,6 +4874,43 @@ body[data-magic-cursor=hide] .mouse-cursor {
     color: var(--tabletext);
 }
 
+.reset-password {
+    padding: 98px;
+}
+
+.reset-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    margin: 50px 0;
+}
+
+.reset-container .reset-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 690px;
+}
+
+.reset-password-inputs-container input {
+    box-shadow: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 10px 19px;
+    font-size: 18px;
+}
+
+.reset-password-inputs-container label {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+
 .wallet .coin-list-wallet table.table thead tr th {
     padding-bottom: 17px;
 }

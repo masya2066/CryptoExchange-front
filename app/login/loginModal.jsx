@@ -88,7 +88,9 @@ export default function LoginModal() {
                                     <input type="checkbox" className="form-check-input"/>
                                     <label className="form-check-label">Remember Me</label>
                                 </div>
-                                <p className={"forgot-password-button"}>Forgot Password?</p>
+                                <Link href={"/reset-password"}>
+                                    <p className={"forgot-password-button"}>Forgot Password?</p>
+                                </Link>
                             </div>
                             <div className={"modal-error-container"}>
                                 {isError &&
