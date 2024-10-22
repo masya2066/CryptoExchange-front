@@ -49,14 +49,14 @@ export default function Banner1() {
                                     <div className="partner__list">
                                         <div className="swiper swiper-partner">
                                             <Swiper {...swiperOptions} className="swiper-wrapper">
-                                                <SwiperSlide style={{display: "flex", justifyContent: "center", margin: "auto"}}>
-                                                    <Link href="#"><img src="/assets/images/icon/binance-logo.svg" alt="" /></Link>
+                                                <SwiperSlide style={{display: "flex", justifyContent: "center", alignItems: "center", margin: "auto"}}>
+                                                    <Link href="https://www.binance.com"><img src="/assets/images/icon/binance-logo.svg" alt="" /></Link>
                                                 </SwiperSlide>
                                                 <SwiperSlide style={{display: "flex", justifyContent: "center", margin: "auto"}}>
-                                                    <Link href="#"><img src="/assets/images/icon/ethereum-logo.svg" alt="" /></Link>
+                                                    <Link href="https://ethereum.org"><img src="/assets/images/icon/ethereum-logo.svg" alt="" /></Link>
                                                 </SwiperSlide>
                                                 <SwiperSlide style={{display: "flex", justifyContent: "center", margin: "auto"}}>
-                                                    <Link href="#"><img src="/assets/images/icon/bybit-logo.svg" alt="" /></Link>
+                                                    <Link href="https://www.bybit.com"><img src="/assets/images/icon/bybit-logo.svg" alt="" /></Link>
                                                 </SwiperSlide>
                                             </Swiper>
                                         </div>
@@ -66,7 +66,7 @@ export default function Banner1() {
                         </div>
                         <div className="col-xl-6 col-md-12">
                             <div className="banner__image">
-                                <img style={{width: "95%", height: "95%", objectFit: "cover", borderRadius: "20px"}} src="/assets/images/layout/banner-01.webp" alt="" />
+                                <img style={{width: "95%", height: "95%", maxWidth: 470, objectFit: "cover", borderRadius: "20px"}} src="/assets/images/layout/banner-01.webp" alt="" />
                             </div>
                         </div>
                     </div>

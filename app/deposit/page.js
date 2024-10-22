@@ -21,12 +21,22 @@ export default function Deposit() {
     const [isEthBalance, setIsEthBalance] = useState("0.00")
     const [isTrc20Balance, setIsTrc20Balance] = useState("0.00")
 
-    const handleCopy = (text) => {
-        navigator.clipboard.writeText(text).then(() => {
+    const [copied, setCopied] = useState(false);
 
-        }).catch(err => {
-            alert("Ошибка при копировании: " + err);
+    const handleCopy = (textToCopy) => {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1000); // Сброс состояния через 2 секунды
+        }).catch(() => {
+            // Обработка ошибки копирования
+            alert("Failed to copy!");
         });
+    };
+
+    const truncateText = (text, maxLength) => {
+        if (text) {
+            return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+        }
     };
 
 
@@ -119,14 +129,22 @@ export default function Deposit() {
                                                             usdtAddress={isUser.btc_address}/>
                                                     </div>
                                                     <div className={"fields-container"}>
+                                                        <div className={"mobile-address"}>
+                                                            {truncateText(isUser.trx_address, 25)}
+                                                        </div>
                                                         <div className={"copy-field"}>
-                                                            <div className={"pc-address"}>Address: {isUser.btc_address}</div>
+                                                            <div
+                                                                className={"pc-address"}>Address: {isUser.btc_address}</div>
                                                             <div className={"mobile-address"}>Click to copy Address
                                                             </div>
                                                             <img src={"/assets/images/icon/copy-icon.png"}
                                                                  onClick={() => handleCopy(isUser.btc_address)}
                                                             />
-                                                        </div>
+                                                            {copied && (
+                                                                <div className="copy-notification">
+                                                                    Copied!
+                                                                </div>
+                                                            )}                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,14 +170,22 @@ export default function Deposit() {
                                                         <QRCodeGen usdtAddress={isUser.eth_address}/>
                                                     </div>
                                                     <div className={"fields-container"}>
+                                                        <div className={"mobile-address"}>
+                                                            {truncateText(isUser.trx_address, 25)}
+                                                        </div>
                                                         <div className={"copy-field"}>
-                                                            <div className={"pc-address"}>Address: {isUser.btc_address}</div>
+                                                            <div
+                                                                className={"pc-address"}>Address: {isUser.btc_address}</div>
                                                             <div className={"mobile-address"}>Click to copy Address
                                                             </div>
                                                             <img src={"/assets/images/icon/copy-icon.png"}
                                                                  onClick={() => handleCopy(isUser.eth_address)}
                                                             />
-                                                        </div>
+                                                            {copied && (
+                                                                <div className="copy-notification">
+                                                                    Copied!
+                                                                </div>
+                                                            )}                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -186,14 +212,22 @@ export default function Deposit() {
                                                             usdtAddress={isUser.trx_address}/>
                                                     </div>
                                                     <div className={"fields-container"}>
+                                                            <div className={"mobile-address"}>
+                                                                {truncateText(isUser.trx_address, 25)}
+                                                            </div>
                                                         <div className={"copy-field"}>
-                                                            <div className={"pc-address"}>Address: {isUser.btc_address}</div>
+                                                            <div
+                                                                className={"pc-address"}>Address: {isUser.trx_address}</div>
                                                             <div className={"mobile-address"}>Click to copy Address
                                                             </div>
                                                             <img src={"/assets/images/icon/copy-icon.png"}
                                                                  onClick={() => handleCopy(isUser.trx_address)}
                                                             />
-                                                        </div>
+                                                            {copied && (
+                                                                <div className="copy-notification">
+                                                                    Copied!
+                                                                </div>
+                                                            )}                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

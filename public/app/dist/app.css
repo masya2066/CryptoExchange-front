@@ -1205,8 +1205,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 @media only screen and (max-width: 1200px) {
     .banner .banner__image {
-        text-align: center;
-        margin-top: 80px;
+        display: none ;
     }
 }
 
@@ -1884,6 +1883,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
 }
 
 .about .about_image .img-swiper .img-main {
+    object-fit: contain;
     box-shadow: 0px 14px 64px -48px rgba(15, 15, 15, 0.1);
 }
 
@@ -2592,6 +2592,12 @@ body[data-magic-cursor=hide] .mouse-cursor {
 .image-icon-footer {
     width: 25px;
     height: 25px;
+    transition: scale 250ms;
+
+    &:hover {
+        cursor: pointer;
+        scale: 1.2;
+    }
 }
 
 .download .download__content {
@@ -4700,8 +4706,13 @@ body[data-magic-cursor=hide] .mouse-cursor {
             justify-content: center;
             align-content: center;
 
+            .mobile-address {
+                display: none;
+            }
+
             .copy-field {
                 display: flex;
+                position: relative;
                 align-items: center;
                 justify-content: space-between; /* Разделяет текст и иконку */
                 border-radius: 10px;
@@ -4711,18 +4722,16 @@ body[data-magic-cursor=hide] .mouse-cursor {
                 word-wrap: break-word; /* Перенос слов на новую строку */
                 white-space: normal; /* Разрешает перенос строк */
 
-                .mobile-address {
-                    display: none;
-                }
-
                 img {
                     fill: var(--line);
                     margin: 0 10px 0 10px;
                     width: 20px;
                     height: 20px;
                     flex-shrink: 0; /* Запрещает сжатие иконки */
+                    transition: scale 0.5s;
 
                     &:hover {
+                        scale: 1.2;
                         cursor: pointer;
                     }
                 }
@@ -4731,14 +4740,51 @@ body[data-magic-cursor=hide] .mouse-cursor {
     }
 }
 
+.copy-notification {
+    position: absolute;
+    z-index: 100;
+    right: 55px;
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    animation: fadeInOut 2s forwards; /* Анимация на 2 секунды */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
 @media (max-width: 767px) {
     .wallet {
         .wallet-deposit-main {
             .fields-container {
+
+                .mobile-address {
+                    display: -webkit-box;
+                    max-width: 100%;
+                    -webkit-line-clamp: 2; /* Количество строк */
+                    -webkit-box-orient: vertical;
+                }
+
                 .copy-field {
-                    .mobile-address {
-                        display: block;
-                    }
 
                     .pc-address {
                         display: none;

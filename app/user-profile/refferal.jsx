@@ -1,8 +1,20 @@
 import Link from "next/link";
 import {useSelector} from "react-redux";
+import {useState} from "react";
 
 export default function Refferal() {
+    const [isCopied, setIsCopied] = useState("Copy")
     const isUser = useSelector(state => state.userSlices.isUser)
+
+    const handleCopy = (textToCopy) => {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            setIsCopied("Copied");
+            setTimeout(() => setIsCopied("Copy"), 500); // Сброс состояния через 2 секунды
+        }).catch(() => {
+            // Обработка ошибки копирования
+            alert("Failed to copy!");
+        });
+    };
 
     return (
         <>
@@ -17,12 +29,16 @@ export default function Refferal() {
                 <div className="refe">
                     <div>
                         <p>Referral link</p>
-                        <input className="form-control" type="text" defaultValue="https://accounts.rockie.com/login"/>
+                        {/*<a style={{cursor: "pointer"}} href={"https://finchain.app/login"}>*/}
+                        <input className="form-control" type="text" disabled={true} defaultValue="https://finchain.app/login"/>
+                        {/*</a>*/}
                     </div>
                     <div>
                         <p>Referral code</p>
                         <input className="form-control" type="text" disabled={true} defaultValue={isUser.ref_code}/>
-                        <span className="btn-action">Copied</span>
+                        <span
+                            onClick={() => handleCopy(isUser.ref_code)}
+                            className="btn-action">{isCopied}</span>
                     </div>
                 </div>
             </div>

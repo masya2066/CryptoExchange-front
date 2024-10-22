@@ -9,6 +9,8 @@ export default function IconStar() {
     }
 
     return (
-        <span className={`icon-star ${isActive ? 'active' : ''}`} onClick={handleClick} />
+        <div style={{display: "flex", width: "100%", height: "100%", alignItems: "center", justifyContent: "center"}}>
+            <span className={`icon-star ${isActive ? 'active' : ''}`} onClick={handleClick}/>
+        </div>
     )
 }

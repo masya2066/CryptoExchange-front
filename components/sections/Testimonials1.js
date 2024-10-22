@@ -65,17 +65,20 @@ export default function Testimonials1() {
                                         <div className="testimonials-box">
                                             <span className="icon-quote" />
                                             <h6 className="text">
-                                                “Great course I really enjoyed it and the course was way
-                                                easy to learn with very good explanations of the code, I
-                                                could easily understand and develop applications with the
-                                                knowledge gathered during the course.”
+                                                “FinChain has been a real game-changer for me!
+                                                I’m just starting to get into cryptocurrency,
+                                                and FinChain turned out to be the perfect platform.
+                                                The interface is super intuitive, and buying or selling
+                                                is seamless. I especially like being able to track
+                                                real-time price changes, which helps me make quick
+                                                decisions. I feel like I’m becoming part of something big!”
                                             </h6>
                                             <div className="bottom">
                                                 <div className="info">
                                                     <img src="/assets/images/avt/avt-02.jpg" alt="" />
                                                     <div className="content">
                                                         <h6 className="name">Johnny Andro</h6>
-                                                        <p className="position">Director, Company</p>
+                                                        <p className="position">Finchain Newbie</p>
                                                     </div>
                                                 </div>
                                                 <img src="/assets/images/icon/ethereum-logo.svg" alt="" />
@@ -86,17 +89,19 @@ export default function Testimonials1() {
                                         <div className="testimonials-box">
                                             <span className="icon-quote" />
                                             <h6 className="text">
-                                                “Great course I really enjoyed it and the course was way
-                                                easy to learn with very good explanations of the code, I
-                                                could easily understand and develop applications with the
-                                                knowledge gathered during the course.”
+                                                “I’m a complete newbie to crypto, and FinChain has been a lifesaver!
+                                                The platform is so simple that even someone with no experience
+                                                can use it easily. I tried buying some ETH, and the whole
+                                                process went smoothly. What I love the most are the convenient
+                                                alerts and the ability to react quickly to market changes.
+                                                I’m really glad I chose FinChain!”
                                             </h6>
                                             <div className="bottom">
                                                 <div className="info">
                                                     <img src="/assets/images/avt/avt-03.webp" alt="" />
                                                     <div className="content">
-                                                        <h6 className="name">Johnny Andro</h6>
-                                                        <p className="position">Director, Company</p>
+                                                        <h6 className="name">Mark Wallberg</h6>
+                                                        <p className="position">Finchain User</p>
                                                     </div>
                                                 </div>
                                                 <img src="/assets/images/icon/ethereum-logo.svg" alt="" />
@@ -107,17 +112,20 @@ export default function Testimonials1() {
                                         <div className="testimonials-box">
                                             <span className="icon-quote" />
                                             <h6 className="text">
-                                                “Great course I really enjoyed it and the course was way
-                                                easy to learn with very good explanations of the code, I
-                                                could easily understand and develop applications with the
-                                                knowledge gathered during the course.”
+                                                “I recently started using FinChain, and I
+                                                couldn’t be happier! The platform is super
+                                                easy to navigate, even for someone like me who’s
+                                                new to trading. I’ve tried buying BTC and ETH,
+                                                and the process was smooth. Plus, the real-time
+                                                price updates help me make quick decisions.
+                                                It feels great to be part of this community!”
                                             </h6>
                                             <div className="bottom">
                                                 <div className="info">
                                                     <img src="/assets/images/avt/avt-04.webp" alt="" />
                                                     <div className="content">
-                                                        <h6 className="name">Johnny Andro</h6>
-                                                        <p className="position">Director, Company</p>
+                                                        <h6 className="name">Andrey Kosolapov</h6>
+                                                        <p className="position">Finchain Professional</p>
                                                     </div>
                                                 </div>
                                                 <img src="/assets/images/icon/ethereum-logo.svg" alt="" />

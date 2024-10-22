@@ -68,7 +68,6 @@ export default function Coinlist1() {
                                                         <th scope="col">24h %</th>
                                                         <th scope="col">Market Cap</th>
                                                         <th scope="col">Last 7 Days</th>
-                                                        <th scope="col" />
                                                     </tr>
                                                 </thead>
                                                 <tbody>

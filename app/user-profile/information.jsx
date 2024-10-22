@@ -29,14 +29,6 @@ export default function Information() {
                     <input type="text" className="form-control" placeholder="Your Phone number" defaultValue={isUser.phone}/>
                 </div>
             </div>
-            <div className="form-group d-flex s1">
-                <select className="form-control" id="exampleFormControlSelect2">
-                    <option>South Korean</option>
-                    <option>Vietnamese</option>
-                    <option>South Korean</option>
-                    <option>South Korean</option>
-                </select>
-            </div>
         </>
     )
 }

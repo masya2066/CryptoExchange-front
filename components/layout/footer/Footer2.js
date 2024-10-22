@@ -22,7 +22,7 @@ export default function Footer2() {
                                 </div>
                             </div>
                             <div className="col-xl-4 col-md-6">
-                                <div className="widget">
+                                <div classame="widget">
                                     <div className="widget-link">
                                         <h6 className="title">PRODUCTS</h6>
                                         <ul>
@@ -35,8 +35,9 @@ export default function Footer2() {
                                         <h6 className="title">SERVICES</h6>
                                         <ul>
                                             <li><Link href="/buy-crypto-select">Exchange</Link></li>
-                                            <li><Link href="/markets">Deposit to Earn</Link></li>
-                                            <li><Link href="#">Referral Program</Link></li>
+                                            {/*<li><Link href="/markets">Deposit to Earn</Link></li>*/}
+                                            <li><Link href="/user-profile">Referral Program</Link></li>
+                                            <li><Link href="https://t.me/kosolapovBTC">Support</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -54,15 +55,15 @@ export default function Footer2() {
                                     </form>
                                     <ul className="list-social">
                                         <li>
-                                            <Link href="#"><img className={"image-icon-footer"}
+                                            <Link href="https://t.me/kosolapovBTC"><img className={"image-icon-footer"}
                                                                 src={"assets/images/icon/instagram.svg"}/></Link>
                                         </li>
                                         <li>
-                                            <Link href="#"><img className={"image-icon-footer"}
+                                            <Link href="https://t.me/kosolapovBTC"><img className={"image-icon-footer"}
                                                                 src={"assets/images/icon/whatsapp.svg"}/></Link>
                                         </li>
                                         <li>
-                                            <Link href="#"><img className={"image-icon-footer"}
+                                            <Link href="https://t.me/kosolapovBTC"><img className={"image-icon-footer"}
                                                                 src={"assets/images/icon/telegram.svg"}/></Link>
                                         </li>
                                     </ul>

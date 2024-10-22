@@ -111,11 +111,11 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
                                                 {isAuth ? <Link className="dropdown-item" href="/deposit"><i
                                                     className="bx bx-wallet font-size-16 align-middle me-1"/>
                                                     <span>Deposit</span></Link> : null}
-                                                <Link className="dropdown-item d-block" href="#"><span
-                                                    className="badge bg-success float-end">11</span><i
-                                                    className="bx bx-wrench font-size-16 align-middle me-1"/>
-                                                    <span>Settings</span></Link>
-                                                <div className="dropdown-divider"/>
+                                                {/*<Link className="dropdown-item d-block" href="#"><span*/}
+                                                {/*    className="badge bg-success float-end">11</span><i*/}
+                                                {/*    className="bx bx-wrench font-size-16 align-middle me-1"/>*/}
+                                                {/*    <span>Settings</span></Link>*/}
+                                                {/*<div className="dropdown-divider"/>*/}
                                                 <Link
                                                     onClick={() => logout()}
                                                     className="dropdown-item text-danger" href=""><i

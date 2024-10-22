@@ -48,19 +48,19 @@ export default function MobileMenu({ isMobileMenu }) {
                     <li className={`menu-item menu-item-has-children ${checkParentActive(["/buy-crypto-select",
                         "/buy-crypto-confirm",
                         "/buy-crypto-details",])}`}>
-                        <Link href="#">Buy/Sell Crypto</Link>
-                        <span className="arrow" onClick={() => handleClick(2)}/>
-                        <ul className="sub-menu" style={{display: `${isActive == 2 ? "block" : "none"}`}}>
-                            <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-select")}`}>
-                                <Link href="/buy-crypto-select">Buy/Sell Crypto Select</Link>
-                            </li>
-                            <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-confirm")}`}>
-                                <Link href="/buy-crypto-confirm">Buy/Sell Crypto Confirm</Link>
-                            </li>
-                            <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-details")}`}>
-                                <Link href="/buy-crypto-details">Buy/Sell Crypto Details</Link>
-                            </li>
-                        </ul>
+                        <Link href="/buy-crypto-select">Exchange Crypto</Link>
+                        {/*<span className="arrow" onClick={() => handleClick(2)}/>*/}
+                        {/*<ul className="sub-menu" style={{display: `${isActive == 2 ? "block" : "none"}`}}>*/}
+                        {/*    <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-select")}`}>*/}
+                        {/*        <Link href="/buy-crypto-select">Buy/Sell Crypto Select</Link>*/}
+                        {/*    </li>*/}
+                        {/*    <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-confirm")}`}>*/}
+                        {/*        <Link href="/buy-crypto-confirm">Buy/Sell Crypto Confirm</Link>*/}
+                        {/*    </li>*/}
+                        {/*    <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-details")}`}>*/}
+                        {/*        <Link href="/buy-crypto-details">Buy/Sell Crypto Details</Link>*/}
+                        {/*    </li>*/}
+                        {/*</ul>*/}
                     </li>
                     {
                         isAuth ?
