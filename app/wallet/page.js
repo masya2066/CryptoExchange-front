@@ -256,7 +256,7 @@ export default function Wallet() {
                                                             </td>
                                                             <td className="asset">
                                                                 <img className={"overview-img"}
-                                                                     src={currencies[1].image}/>
+                                                                     src={currencies[2].image}/>
                                                                 <p>
                                                                     <span className="boild">ETH</span>
                                                                     <span className="unit">Ethereum</span>
@@ -284,7 +284,7 @@ export default function Wallet() {
                                                             </td>
                                                             <td className="asset">
                                                                 <img className={"overview-img"}
-                                                                     src={currencies[2].image}/>
+                                                                     src={currencies[3].image}/>
                                                                 <p>
                                                                     <span className="boild">USDT</span>
                                                                     <span className="unit">Tron USDT</span>
@@ -308,7 +308,7 @@ export default function Wallet() {
                                                         </tr>
                                                         <tr>
                                                             <td className="number">
-                                                                <span>1</span>
+                                                                <span>4</span>
                                                             </td>
                                                             <td className="asset">
                                                                 <img className={"overview-img"}
