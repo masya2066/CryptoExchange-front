@@ -130,7 +130,7 @@ export default function Deposit() {
                                                     </div>
                                                     <div className={"fields-container"}>
                                                         <div className={"mobile-address"}>
-                                                            {truncateText(isUser.trx_address, 25)}
+                                                            {truncateText(isUser.btc_address, 25)}
                                                         </div>
                                                         <div className={"copy-field"}>
                                                             <div
@@ -171,11 +171,11 @@ export default function Deposit() {
                                                     </div>
                                                     <div className={"fields-container"}>
                                                         <div className={"mobile-address"}>
-                                                            {truncateText(isUser.trx_address, 25)}
+                                                            {truncateText(isUser.eth_address, 25)}
                                                         </div>
                                                         <div className={"copy-field"}>
                                                             <div
-                                                                className={"pc-address"}>Address: {isUser.btc_address}</div>
+                                                                className={"pc-address"}>Address: {isUser.eth_address}</div>
                                                             <div className={"mobile-address"}>Click to copy Address
                                                             </div>
                                                             <img src={"/assets/images/icon/copy-icon.png"}
