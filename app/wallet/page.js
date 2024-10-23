@@ -145,6 +145,10 @@ export default function Wallet() {
         usdt: {
             total: isTrc20Balance,
             usd: trc20UsdBalance
+        },
+        soli: {
+            total: "0.00",
+            usd: "0.00"
         }
     }
 
