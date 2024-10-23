@@ -27,18 +27,18 @@ export default function About1() {
                         <div className="col-xl-6 col-md-12">
                             <div className="about_image">
                                 <div className="swiper img-swiper">
-                                    <Swiper {...swiperOptions} style={{maxHeight: "400px"}} className="swiper-wrapper">
-                                        <SwiperSlide>
-                                            <img className="img-main" src="/assets/images/layout/about-1.png" alt="" />
+                                    <Swiper {...swiperOptions} className="swiper-wrapper">
+                                        <SwiperSlide style={{display: "flex", justifyContent: "center"}}>
+                                            <img style={{borderRadius: 10}} className="img-main" src="/assets/images/layout/about-1.png" alt="" />
                                         </SwiperSlide>
-                                        <SwiperSlide>
-                                            <img className="img-main" src="/assets/images/layout/about-2.png" alt="" />
+                                        <SwiperSlide style={{display: "flex", justifyContent: "center"}}>
+                                            <img style={{borderRadius: 10}} className="img-main" src="/assets/images/layout/about-2.png" alt="" />
+                                        </SwiperSlide >
+                                        <SwiperSlide style={{display: "flex", justifyContent: "center"}}>
+                                            <img style={{borderRadius: 10}} className="img-main" src="/assets/images/layout/about-3.png" alt="" />
                                         </SwiperSlide>
-                                        <SwiperSlide>
-                                            <img className="img-main" src="/assets/images/layout/about-3.png" alt="" />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <img className="img-main" src="/assets/images/layout/about-4.png" alt="" />
+                                        <SwiperSlide style={{display: "flex", justifyContent: "center"}}>
+                                            <img style={{borderRadius: 10}} className="img-main" src="/assets/images/layout/about-4.png" alt="" />
                                         </SwiperSlide>
                                     </Swiper>
                                     <div className="swiper-pagination" />

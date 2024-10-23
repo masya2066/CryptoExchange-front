@@ -20,6 +20,11 @@ export default function Wallet() {
             image: '/assets/images/icon/btc-icon.svg'
         },
         {
+            value: 'SOLI',
+            label: 'SOLI',
+            image: '/assets/images/icon/soli-icon.webp'
+        },
+        {
             value: 'Ethereum',
             label: 'Ethereum',
             image: '/assets/images/icon/eth-icon.svg'
@@ -295,6 +300,34 @@ export default function Wallet() {
                                                             <td>
                                                                 <span className="boild">{isTrc20Balance} USDT</span>
                                                                 <span className="unit">${trc20UsdBalance}</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="number">
+                                                                <span>1</span>
+                                                            </td>
+                                                            <td className="asset">
+                                                                <img className={"overview-img"}
+                                                                     src={"assets/images/icon/soli-icon.webp"}/>
+                                                                <p>
+                                                                    <span className="boild">SOLI</span>
+                                                                    <span className="unit">SOLI</span>
+                                                                </p>
+                                                            </td>
+                                                            <td className="color-success">
+                                                                <span className="boild">0.00%</span>
+                                                            </td>
+                                                            <td>
+                                                                <span className="boild">0.00 USDT</span>
+                                                                <span className="unit">$0.00</span>
+                                                            </td>
+                                                            <td>
+                                                                <span className="boild">0.00 USDT</span>
+                                                                <span className="unit">$0.00</span>
+                                                            </td>
+                                                            <td>
+                                                                <span className="boild">0.00 USDT</span>
+                                                                <span className="unit">$0.00</span>
                                                             </td>
                                                         </tr>
                                                         </tbody>

@@ -1140,7 +1140,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 .banner {
     background: var(--surface);
-    padding: 84px 0 30px;
+    padding: 84px 0 130px;
 }
 
 .banner .banner__content .title {
@@ -1449,6 +1449,7 @@ body[data-magic-cursor=hide] .mouse-cursor {
 
 .coin-list {
     padding: 0 0 59px;
+    margin-top: 50px;
 }
 
 .coin-list .block-text {

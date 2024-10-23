@@ -11,6 +11,7 @@ import Work1 from "@/components/sections/Work1"
 import {Provider} from "react-redux";
 import store from "@/store";
 import Providers from "@/components/layout/Providers";
+import Coinlist2 from "@/components/sections/Coinlist2";
 export default function Home() {
 
 
@@ -21,6 +22,7 @@ export default function Home() {
             <Provider store={store}>
                 <Layout headerStyle={1} footerStyle={2}>
                     <Banner1 />
+                    <Crypto1/>
                     <Coinlist1 />
                     <Work1 />
                     <About1 />

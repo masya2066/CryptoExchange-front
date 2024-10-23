@@ -71,155 +71,184 @@ export default function Coinlist1() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row"><IconStar /></th>
-                                                        <td>1</td>
-                                                        <td>
-                                                            <Link href="#"><span className="icon-btc"><span className="path1" /><span className="path2" /></span>
-                                                                <span>Bitcoin</span>
-                                                                <span className="unit">BTC</span></Link>
-                                                        </td>
-                                                        <td className="boild">${isBtc.market_data.current_price.usd.toLocaleString('en-US')}</td>
-                                                        <td className={isBtc.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
-                                                            {isBtc.market_data.price_change_percentage_24h.toFixed(2)}%
-                                                        </td>
-                                                        <td className="boild">${isBtc.market_data.market_cap.usd.toLocaleString('en-US')}</td>
-                                                        <td>
-                                                            <ChatList color={isBtc.market_data.price_change_percentage_7dnp  > 0 ? 1 : 2} />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><IconStar/></th>
-                                                        <td>2</td>
-                                                        <td>
-                                                            <Link href="#"><span className="icon-eth"><span
-                                                                className="path1"/><span className="path2"/><span
-                                                                className="path3"/><span
-                                                                className="path4"/></span><span>Ethereum</span>
-                                                                <span className="unit">ETH</span></Link>
-                                                        </td>
-                                                        <td className="boild">${isEth.market_data.current_price.usd.toLocaleString('en-US')}</td>
-                                                        <td className={isEth.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
-                                                            {isEth.market_data.price_change_percentage_24h.toFixed(2)}%
-                                                        </td>
-                                                        <td className="boild">${isEth.market_data.market_cap.usd.toLocaleString('en-US')}</td>
-                                                        <td>
-                                                            <ChatList
-                                                                color={isEth.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><IconStar/></th>
-                                                        <td>3</td>
-                                                        <td>
-                                                            <Link href="#"><span className="icon-bnb"><span
-                                                                className="path1"/><span className="path2"/><span
-                                                                className="path3"/><span className="path4"/><span
-                                                                className="path5"/><span className="path6"/></span><span>BNB</span>
-                                                                <span className="unit">BNB/USD</span></Link>
-                                                        </td>
-                                                        <td className="boild">${isBnb.market_data.current_price.usd.toLocaleString('en-US')}</td>
-                                                        <td className={isBnb.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
-                                                            {isBnb.market_data.price_change_percentage_24h.toFixed(2)}%
-                                                        </td>
-                                                        <td className="boild">${isBnb.market_data.market_cap.usd.toLocaleString('en-US')}</td>
-                                                        <td>
-                                                            <ChatList
-                                                                color={isBnb.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><IconStar /></th>
-                                                        <td>4</td>
-                                                        <td>
-                                                            <Link href="#"><span className="icon-tether"><span className="path1" /><span className="path2" /></span><span>Tether</span>
-                                                                <span className="unit">USDT/USD</span></Link>
-                                                        </td>
-                                                        <td className="boild">${isUsdt.market_data.current_price.usd.toLocaleString('en-US')}</td>
-                                                        <td className={isUsdt.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
-                                                            {isUsdt.market_data.price_change_percentage_24h.toFixed(2)}%
-                                                        </td>
-                                                        <td className="boild">${isUsdt.market_data.market_cap.usd.toLocaleString('en-US')}</td>
-                                                        <td>
-                                                            <ChatList
-                                                                color={isUsdt.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><IconStar /></th>
-                                                        <td>5</td>
-                                                        <td>
-                                                            <Link href="#"><span className="icon-sol"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /><span className="path5" /></span><span>Solana</span>
-                                                                <span className="unit">SOL</span></Link>
-                                                        </td>
-                                                        <td className="boild">${isSolana.market_data.current_price.usd.toLocaleString('en-US')}</td>
-                                                        <td className={isSolana.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
-                                                            {isSolana.market_data.price_change_percentage_24h.toFixed(2)}%
-                                                        </td>
-                                                        <td className="boild">${isSolana.market_data.market_cap.usd.toLocaleString('en-US')}</td>
-                                                        <td>
-                                                            <ChatList
-                                                                color={isSolana.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><IconStar/></th>
-                                                        <td>6</td>
-                                                        <td>
-                                                            <Link href="#"><span className="icon-btc"><span
-                                                                className="path1"/><span
-                                                                className="path2"/></span><span>XRP</span> <span
-                                                                className="unit">XRP</span></Link>
-                                                        </td>
-                                                        <td className="boild">${isRipple.market_data.current_price.usd.toLocaleString('en-US')}</td>
-                                                        <td className={isRipple.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
-                                                            {isRipple.market_data.price_change_percentage_24h.toFixed(2)}%
-                                                        </td>
-                                                        <td className="boild">${isRipple.market_data.market_cap.usd.toLocaleString('en-US')}</td>
-                                                        <td>
-                                                            <ChatList
-                                                                color={isRipple.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><IconStar/></th>
-                                                        <td>7</td>
-                                                        <td>
-                                                            <Link href="#"><span className="icon-ada"><span
-                                                                className="path1"/><span className="path2"/><span
-                                                                className="path3"/><span className="path4"/><span
-                                                                className="path5"/><span className="path6"/><span
-                                                                className="path7"/><span className="path8"/><span
-                                                                className="path9"/></span><span>Cardano</span>
-                                                                <span className="unit">ADA</span></Link>
-                                                        </td>
-                                                        <td className="boild">${isCardano.market_data.current_price.usd.toLocaleString('en-US')}</td>
-                                                        <td className={isCardano.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
-                                                            {isCardano.market_data.price_change_percentage_24h.toFixed(2)}%
-                                                        </td>
-                                                        <td className="boild">${isCardano.market_data.market_cap.usd.toLocaleString('en-US')}</td>
-                                                        <td>
-                                                            <ChatList
-                                                                color={isCardano.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><IconStar /></th>
-                                                        <td>8</td>
-                                                        <td>
-                                                            <Link href="#"><span className="icon-avax"><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /></span><span>Avalanche</span>
-                                                                <span className="unit">AVAX</span></Link>
-                                                        </td>
-                                                        <td className="boild">${isAvalanche.market_data.current_price.usd.toLocaleString('en-US')}</td>
-                                                        <td className={isAvalanche.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
-                                                            {isAvalanche.market_data.price_change_percentage_24h.toFixed(2)}%
-                                                        </td>
-                                                        <td className="boild">${isAvalanche.market_data.market_cap.usd.toLocaleString('en-US')}</td>
-                                                        <td>
-                                                            <ChatList
-                                                                color={isAvalanche.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
-                                                        </td>
-                                                    </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <Link href="#"><span className="icon-btc"><span
+                                                            className="path1"/><span className="path2"/></span>
+                                                            <span>Bitcoin</span>
+                                                            <span className="unit">BTC</span></Link>
+                                                    </td>
+                                                    <td className="boild">${isBtc.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                    <td className={isBtc.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                        {isBtc.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                    </td>
+                                                    <td className="boild">${isBtc.market_data.market_cap.usd.toLocaleString('en-US')}</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={isBtc.market_data.price_change_percentage_7dnp > 0 ? 1 : 2}/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>2</td>
+                                                    <td>
+                                                        <Link href="#"><img style={{width: 20, height: 20, marginRight: 7.5}} src={"assets/images/icon/soli-icon.webp"}/>
+                                                            <span>SOLI</span>
+                                                            <span className="unit">SOLI</span></Link>
+                                                    </td>
+                                                    <td className="boild">$0.56</td>
+                                                    <td className={"up"}>
+                                                        0.08%
+                                                    </td>
+                                                    <td className="boild">$44,429,852</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={1}/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>3</td>
+                                                    <td>
+                                                        <Link href="#"><span className="icon-eth"><span
+                                                            className="path1"/><span className="path2"/><span
+                                                            className="path3"/><span
+                                                            className="path4"/></span><span>Ethereum</span>
+                                                            <span className="unit">ETH</span></Link>
+                                                    </td>
+                                                    <td className="boild">${isEth.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                    <td className={isEth.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                        {isEth.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                    </td>
+                                                    <td className="boild">${isEth.market_data.market_cap.usd.toLocaleString('en-US')}</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={isEth.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>4</td>
+                                                    <td>
+                                                        <Link href="#"><span className="icon-bnb"><span
+                                                            className="path1"/><span className="path2"/><span
+                                                            className="path3"/><span className="path4"/><span
+                                                            className="path5"/><span
+                                                            className="path6"/></span><span>BNB</span>
+                                                            <span className="unit">BNB/USD</span></Link>
+                                                    </td>
+                                                    <td className="boild">${isBnb.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                    <td className={isBnb.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                        {isBnb.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                    </td>
+                                                    <td className="boild">${isBnb.market_data.market_cap.usd.toLocaleString('en-US')}</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={isBnb.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>5</td>
+                                                    <td>
+                                                        <Link href="#"><span className="icon-tether"><span
+                                                            className="path1"/><span
+                                                            className="path2"/></span><span>Tether</span>
+                                                            <span className="unit">USDT/USD</span></Link>
+                                                    </td>
+                                                    <td className="boild">${isUsdt.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                    <td className={isUsdt.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                        {isUsdt.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                    </td>
+                                                    <td className="boild">${isUsdt.market_data.market_cap.usd.toLocaleString('en-US')}</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={isUsdt.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>6</td>
+                                                    <td>
+                                                        <Link href="#"><span className="icon-sol"><span
+                                                            className="path1"/><span className="path2"/><span
+                                                            className="path3"/><span className="path4"/><span
+                                                            className="path5"/></span><span>Solana</span>
+                                                            <span className="unit">SOL</span></Link>
+                                                    </td>
+                                                    <td className="boild">${isSolana.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                    <td className={isSolana.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                        {isSolana.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                    </td>
+                                                    <td className="boild">${isSolana.market_data.market_cap.usd.toLocaleString('en-US')}</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={isSolana.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>7</td>
+                                                    <td>
+                                                        <Link href="#"><span className="icon-btc"><span
+                                                            className="path1"/><span
+                                                            className="path2"/></span><span>XRP</span> <span
+                                                            className="unit">XRP</span></Link>
+                                                    </td>
+                                                    <td className="boild">${isRipple.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                    <td className={isRipple.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                        {isRipple.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                    </td>
+                                                    <td className="boild">${isRipple.market_data.market_cap.usd.toLocaleString('en-US')}</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={isRipple.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>8</td>
+                                                    <td>
+                                                        <Link href="#"><span className="icon-ada"><span
+                                                            className="path1"/><span className="path2"/><span
+                                                            className="path3"/><span className="path4"/><span
+                                                            className="path5"/><span className="path6"/><span
+                                                            className="path7"/><span className="path8"/><span
+                                                            className="path9"/></span><span>Cardano</span>
+                                                            <span className="unit">ADA</span></Link>
+                                                    </td>
+                                                    <td className="boild">${isCardano.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                    <td className={isCardano.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                        {isCardano.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                    </td>
+                                                    <td className="boild">${isCardano.market_data.market_cap.usd.toLocaleString('en-US')}</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={isCardano.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><IconStar/></th>
+                                                    <td>9</td>
+                                                    <td>
+                                                        <Link href="#"><span className="icon-avax"><span
+                                                            className="path1"/><span className="path2"/><span
+                                                            className="path3"/><span
+                                                            className="path4"/></span><span>Avalanche</span>
+                                                            <span className="unit">AVAX</span></Link>
+                                                    </td>
+                                                    <td className="boild">${isAvalanche.market_data.current_price.usd.toLocaleString('en-US')}</td>
+                                                    <td className={isAvalanche.market_data.price_change_percentage_24h > 0 ? "up" : "down"}>
+                                                        {isAvalanche.market_data.price_change_percentage_24h.toFixed(2)}%
+                                                    </td>
+                                                    <td className="boild">${isAvalanche.market_data.market_cap.usd.toLocaleString('en-US')}</td>
+                                                    <td>
+                                                        <ChatList
+                                                            color={isAvalanche.market_data.price_change_percentage_7d > 0 ? 1 : 2}/>
+                                                    </td>
+                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
