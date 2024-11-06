@@ -47,10 +47,10 @@ export default function MainMenu() {
                     {/*    </li>*/}
                     {/*</ul>*/}
                 </li>
-                <li className={`menu-item menu-item-has-children ${checkParentActive(["/buy-crypto-select",
+                <li className={`menu-item menu-item-has-children ${checkParentActive(["/exchange-crypto",
                     "/buy-crypto-confirm",
                     "/buy-crypto-details",])}`}>
-                    <Link href="/buy-crypto-select">Exchange Crypto</Link>
+                    <Link href="/exchange-crypto">Exchange Crypto</Link>
                     {/*<ul className="sub-menu">*/}
                     {/*    <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-select")}`}>*/}
                     {/*        <Link href="/buy-crypto-select">Buy/Sell Crypto Select</Link>*/}

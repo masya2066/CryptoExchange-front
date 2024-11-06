@@ -1579,6 +1579,19 @@ body[data-magic-cursor=hide] .mouse-cursor {
     font-size: 14px;
 }
 
+.exchange-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.swap-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 155px;
+}
+
 .coin-list .coin-list__main .flat-tabs .content-tab .content-inner tbody tr td.boild {
     font-weight: 700;
     font-size: 18px;

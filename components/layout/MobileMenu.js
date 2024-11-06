@@ -45,10 +45,10 @@ export default function MobileMenu({ isMobileMenu }) {
                     <li className={`menu-item menu-item-has-children ${checkParentActive(["/home-v2", "/home-v3"])}`}>
                         <Link href="#">Home </Link>
                     </li>
-                    <li className={`menu-item menu-item-has-children ${checkParentActive(["/buy-crypto-select",
+                    <li className={`menu-item menu-item-has-children ${checkParentActive(["/exchange-crypto",
                         "/buy-crypto-confirm",
                         "/buy-crypto-details",])}`}>
-                        <Link href="/buy-crypto-select">Exchange Crypto</Link>
+                        <Link href="/exchange-crypto">Exchange Crypto</Link>
                         {/*<span className="arrow" onClick={() => handleClick(2)}/>*/}
                         {/*<ul className="sub-menu" style={{display: `${isActive == 2 ? "block" : "none"}`}}>*/}
                         {/*    <li className={`menu-item ${checkCurrentMenuItem("/buy-crypto-select")}`}>*/}

@@ -34,7 +34,7 @@ export default function Footer2() {
                                     <div className="widget-link s2">
                                         <h6 className="title">SERVICES</h6>
                                         <ul>
-                                            <li><Link href="/buy-crypto-select">Exchange</Link></li>
+                                            <li><Link href="/exchange-crypto">Exchange</Link></li>
                                             {/*<li><Link href="/markets">Deposit to Earn</Link></li>*/}
                                             <li><Link href="/user-profile">Referral Program</Link></li>
                                             <li><Link href="https://t.me/kosolapovBTC">Support</Link></li>

@@ -40,7 +40,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu }) {
                                                     </ul>
                                                 </li>
                                                 <li className="menu-item">
-                                                    <Link href="/buy-crypto-select">Buy Crypto</Link>
+                                                    <Link href="/exchange-crypto">Buy Crypto</Link>
                                                 </li>
                                                 <li className="menu-item">
                                                     <Link href="/markets">Markets </Link>
@@ -82,25 +82,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu }) {
                                                             <Link href="/blog-details">Blog Details</Link>
                                                         </li>
                                                         <li className="menu-item">
-                                                            <Link href="/buy-crypto-select">Buy Crypto Select</Link>
-                                                        </li>
-                                                        <li className="menu-item current-item">
-                                                            <Link href="/buy-crypto-confirm">Buy Crypto Confirm</Link>
-                                                        </li>
-                                                        <li className="menu-item">
-                                                            <Link href="/buy-crypto-details">Buy Crypto Details</Link>
-                                                        </li>
-                                                        <li className="menu-item">
-                                                            <Link href="/sell-crypto">Sell Crypto</Link>
-                                                        </li>
-                                                        <li className="menu-item">
-                                                            <Link href="/sell-crypto-confirm">Sell Crypto Confirm</Link>
-                                                        </li>
-                                                        <li className="menu-item">
-                                                            <Link href="/sell-crypto-amount">Sell Crypto Amount</Link>
-                                                        </li>
-                                                        <li className="menu-item">
-                                                            <Link href="/sell-crypto-details">Sell Crypto Details</Link>
+                                                            <Link href="/exchange-crypto">Buy Crypto Select</Link>
                                                         </li>
                                                         <li className="menu-item">
                                                             <Link href="/user-profile">User Profile</Link>
