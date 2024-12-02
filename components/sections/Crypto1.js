@@ -8,6 +8,7 @@ export default function Crypto1() {
     const [isBtc, setIsBtc] = useState(defaultCurrecy)
     const [isEth, setIsEth] = useState(defaultCurrecy)
     const [isUsdt, setIsUsdt] = useState(defaultCurrecy)
+    const [isSoli, setIsSoli] = useState(0)
 
     const [flatTabs, setFlatTabs] = useState(1)
     const handleFlatTabs = (index) => {
@@ -22,6 +23,16 @@ export default function Crypto1() {
                         if (currency.id === "bitcoin") setIsBtc(currency)
                         if (currency.id === "ethereum") setIsEth(currency)
                         if (currency.id === "tether") setIsUsdt(currency)
+                    })
+                }
+            })
+        cryptoMethods.getPrices(["soli"])
+            .then(res => {
+                if (res.data) {
+                    res.data.forEach(currency => {
+                        if (currency.currency === "soli") {
+                            setIsSoli(currency.usd_price)
+                        }
                     })
                 }
             })
@@ -111,9 +122,9 @@ export default function Crypto1() {
                                                 <div className="top">
                                                     <Link href="#"><img style={{marginLeft: -6, marginRight: 5, width: 30, height: 30}} src={"assets/images/icon/soli-icon.webp"}/><span className="path1" /><span className="path2" /><span className="path3" /><span className="path4" /><span className="path5" /><span className="path6" /><span>SOLI</span> <span className="unit">SOLI/USD</span></Link>
                                                 </div>
-                                                <h6 className="price">USD 0.56</h6>
+                                                <h6 className="price">USD {isSoli}</h6>
                                                 <div className="bottom">
-                                                    <p>0.56</p>
+                                                    <p>{isSoli}</p>
                                                     <div className="sale success">0.08%</div>
                                                 </div>
                                             </div>

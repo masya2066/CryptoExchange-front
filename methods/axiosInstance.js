@@ -44,6 +44,7 @@ axiosInstance.interceptors.response.use(
             localStorage.removeItem(storage.accessToken);
             localStorage.removeItem(storage.refreshToken);
             localStorage.removeItem(storage.user);
+            location.href = "/login";
             throw refreshErr;
           }
         }

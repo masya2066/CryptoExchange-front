@@ -53,7 +53,7 @@ export default function LoginModal() {
 
 
     useEffect(() => {
-        if (localStorage.getItem(storage.user) == "") {
+        if (localStorage.getItem(storage.user) === "") {
             dispatch(authStatus({isAuth: false}))
         }
         if (isEmail.length >= 5 && isPassword.length >= 8) {

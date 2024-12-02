@@ -17,6 +17,7 @@ export default function Coinlist1() {
     const [isBnb, setIsBnb] = useState(defaultCurrecy)
     const [isAvalanche, setIsAvalanche] = useState(defaultCurrecy)
     const [isCardano, setIsCardano] = useState(defaultCurrecy)
+    const [isSoli, setIsSoli] = useState(0)
     const handleFlatTabs = (index) => {
         setFlatTabs(index)
     }
@@ -34,6 +35,16 @@ export default function Coinlist1() {
                         if (currency.id === "ripple") setIsRipple(currency)
                         if (currency.id === "cardano") setIsCardano(currency)
                         if (currency.id === "avalanche-2") setIsAvalanche(currency)
+                    })
+                }
+            })
+        cryptoMethods.getPrices(["soli"])
+            .then(res => {
+                if (res.data) {
+                    res.data.forEach(currency => {
+                        if (currency.currency === "soli") {
+                            setIsSoli(currency.usd_price)
+                        }
                     })
                 }
             })
@@ -98,7 +109,7 @@ export default function Coinlist1() {
                                                             <span>SOLI</span>
                                                             <span className="unit">SOLI</span></Link>
                                                     </td>
-                                                    <td className="boild">$0.56</td>
+                                                    <td className="boild">${isSoli}</td>
                                                     <td className={"up"}>
                                                         0.08%
                                                     </td>

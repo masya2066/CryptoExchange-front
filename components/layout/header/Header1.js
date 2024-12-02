@@ -9,6 +9,7 @@ import {storage} from "@/storage";
 import {useEffect, useState} from "react";
 import authMethods from "@/methods/auth";
 import {authStatus} from "@/store/authSlice";
+import {infoUser} from "@/store/userSlice";
 
 const ThemeSwitch = dynamic(() => import('@/components/elements/ThemeSwitch'), {
     ssr: false,
@@ -28,22 +29,30 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu }) {
     }
 
     useEffect(() => {
-        authMethods.userInfo()
-            .then(res => {
-                if (res.data && res.status == 200) {
-                    dispatch(authStatus({isAuth: true}))
-                } else {
-                    dispatch(authStatus({isAuth: false}))
+        if (localStorage.getItem(storage.accessToken) || localStorage.getItem(storage.refreshToken)) {
+            if (!localStorage.getItem(storage.user)) {
+                authMethods.userInfo()
+                    .then(res => {
+                        if (res.data && res.status == 200) {
+                            dispatch(authStatus({isAuth: true}))
+                        } else {
+                            dispatch(authStatus({isAuth: false}))
+                            localStorage.removeItem(storage.accessToken)
+                            localStorage.removeItem(storage.accessToken)
+                            localStorage.removeItem(storage.user)
+                        }
+                    }).catch(e => {
+                    console.log(e)
                     localStorage.removeItem(storage.accessToken)
                     localStorage.removeItem(storage.accessToken)
                     localStorage.removeItem(storage.user)
-                }
-            }).catch(e => {
-                console.log(e)
-            localStorage.removeItem(storage.accessToken)
-            localStorage.removeItem(storage.accessToken)
-            localStorage.removeItem(storage.user)
-        })
+                })
+            } else {
+                dispatch(authStatus({isAuth: true}))
+                const user = JSON.parse(localStorage.getItem(storage.user))
+                dispatch(infoUser({isUser: user}))
+            }
+        }
     }, []);
 
     return (
